@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+*
+{
+    margin: 0;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+}
+.page1
+{
+    background-color: rgba(37, 54, 97, 1);
+}
+
+a:active
+{
+    color: #F58025;
+}
+
+.sidebar1
+{
+    margin: auto;
+    width: 650px;
+    /* background-color: red; */
+    
+}
+
+.imgcontainer
+{
+    margin: auto;
+    width: 700px;
+    height: 400px;
+    /* background-color: green; */
+    position: relative;
+}
+
+.img1
+{
+    position: absolute;
+    top: 0;
+    left: 150px;
+}
+.img2
+{
+    position: absolute;
+    top: 120px;
+    right: 120px;
+}
+.img3
+{
+    position: absolute;
+    top: 210px;
+    left: 50px;
+}
+
+.card
+{
+    /* background-color: rgba(37, 54, 97, 1); */
+    /* color: white; */
+    height: 300px;
+}
+
+.card-body
+{
+    overflow: hidden;
+
+}
+
+.recruit p a
+{
+    color: rgba(37, 54, 97, 1);
+}
+.recruit p 
+{
+    color: rgba(37, 54, 97, 1);
+    transform: translate(0px , -500px);
+
+    animation-name: anim1;
+    animation-duration: 10s;
+    transition: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+.recruit p a:hover
+{
+    text-decoration: underline white;
+    background-color: rgba(37, 54, 97, 1);
+    color: white;
+}
+
+@keyframes anim1
+{
+    0%
+    {
+        transform: translate(0px , -200px);
+    }
+
+    10%
+    {
+        transform: translate(0px , -160px);
+    }
+
+    20%
+    {
+        transform: translate(0px , -120px);
+    }
+
+    30%
+    {
+        transform: translate(0px , -80px);
+    }
+
+    40%
+    {
+        transform: translate(0px , -40px);
+    }
+    50%
+    {
+        transform: translate(0px , 0px);
+    }
+    60%
+    {
+        transform: translate(0px , 40px);
+    }
+    70%
+    {
+        transform: translate(0px , 80px);
+    }
+    80%
+    {
+        transform: translate(0px , 120px);
+    }
+    90%
+    {
+        transform: translate(0px , 160px);
+    }
+    100%
+    {
+        transform: translate(0px , 200px);
+    }
+}
+
+.page4
+{
+    background-color: rgba(37, 54, 97, 1);
+    color: white;
+}
+
+.vector
+{
+    animation: anim2 2s linear infinite;
+}
+
+@keyframes anim2
+{
+    0%
+    {
+        transform: rotate(0deg);
+    }
+
+    100%
+    {
+        transform: rotate(360deg);
+    }
+}
+
+.w-15
+{
+    width: 10%;
+}
+
+.sec1 input , .sec1 textarea
+{
+    border: 2px solid #ffc107;
+    margin-top: 0.15%;
+}
+
+.formpage1
+{
+    background-color: rgba(37, 54, 97, 1);
+    min-height: 100vh;
+}
+
+.wrapper
+{
+    background-color: white;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+
+.tag-container
+{
+    /* padding: 9px; */
+    display: flex;
+    border: 2px solid black;
+    flex-wrap: wrap;
+}
+
+.tag-container li , .tag-container input
+{
+    border: 1px solid rgb(189, 181, 181);
+    background-color:rgba(88, 83, 83, 0.097);
+    border-radius: 8px;
+    /* padding: 2px 8px; */
+    margin: 8px;
+    font-size: 0.8em;
+    list-style: none;
+    display: flex;
+}
+
+.tag-container input
+{
+    border: 1px solid white;
+    background-color: white;
+    /* width: 100px; */
+}
+
+.tag-container li button
+{
+    height: 20px;
+    width: 20px;
+    color: #e7d7d7;
+    margin-left: 8px;
+    font-size: 0.8em;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #383636;
+    justify-content: center;
+}

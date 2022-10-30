@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  style 
+    include ../public/bootstrap-4.6.2-dist/bootstrap-4.6.2-dist/css/bootstrap.css
+  style 
+    include ../public/bootstrap-5.2.1-dist/bootstrap-5.2.1-dist/css/bootstrap.css
+  style 
+    include ../public/style.css
+
+  script(src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js")
+  script(src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js")
+
+  <title>Document</title>
+</head>
+
+<body style="background-color: rgba(37, 54, 97, 1); color: white;">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-transperent px-2">
+    <a class="navbar-brand" href="#">
+      <h4><span class="text-warning">i</span> - Job</h4>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/demo">Demo</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"aria-expanded="false">
+          |  Registration
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Apply</a>
+            <a class="dropdown-item" href="#">Edit</a>
+            <a class="dropdown-item" href="#">Find</a>
+          </div>
+        </li>
+
+        <li class="nav-item ">
+          <a class="nav-link" href="#">Application Form</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="#">Application Withdraw</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <div class="d-flex align-items-center">
+          <ion-icon name="help-circle-outline" size="large" class="text-white"></ion-icon>
+          <a class="nav-link text-white ml-2 mr-4" href="#">Help Center</a>
+        </div>
+        <h4 class="mr-4 text-white">|</h4>
+        <button type="button" class="btn btn-outline-warning my-2 mr-4 my-sm-0" data-toggle="modal" data-target="#signUpModal">
+        |    Sign Up
+        </button>
+        <h4 class="mr-4 text-white">|</h4>
+        <button type="button" class="btn btn-outline-warning my-2 my-sm-0 mr-2" data-toggle="modal" data-target="#logInModal">
+        |    Log In
+        </button>
+        <h4 class="mr-4 text-white">|</h4>
+        <a href="/logout" class="btn btn-outline-warning my-2 my-sm-0 mr-2">
+        |    Logout
+        </a>
+      </form>
+    </div>
+  </nav>
+  <div class="container page2 mt-4"  >
+    <h2 class="text-center">Demo Page</h2>
+    <div class="row mt-4">
+      <div class="col-sm-4">
+
+        <div class="card" style="width: 25rem;">
+          <div class="d-flex align-items-center card-header text-white" style="background-color: rgba(37, 54, 97, 1);">
+            <ion-icon name="notifications-outline" size="large" class="vector"></ion-icon>
+            <h5 class="ml-2 text-center my-auto">
+              Notice Board
+            </h5>
+          </div>
+          <div class="card-body recruit">
+            <p class="card-text  px-1"><a class="" href="#">tcs recruitment for software engineer</a> </p>
+            <p class="card-text  px-1"><a class="" href="#">infosys recruitment for ASP.NET</a> </p>
+            <p class="card-text  px-1"><a class="" href="#">tcs recruitment for software engineer</a> </p>
+            <p class="card-text  px-1"><a class="" href="#">tcs recruitment for software engineer</a> </p>
+            <p class="card-text  px-1"><a class="" href="#">tcs recruitment for software engineer</a> </p>
+
+          </div>
+          <a href="#" class="btn btn-warning btn-outline-dark border border-black display-inline">View All</a>
+        </div>
+      </div>
+      <div class="col-sm-4">
+
+        <div class="card " style="width: 25rem;">
+          <div class="d-flex align-items-center card-header text-white" style="background-color: rgba(37, 54, 97, 1);">
+            <ion-icon name="people-circle-outline" size="large" class="vector"></ion-icon>
+            <h5 class="ml-2 text-center my-auto">
+              For Applicants
+            </h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item mt-1">Create your account first</li>
+            <li class="list-group-item mt-1">Create your application form</li>
+            <li class="list-group-item mt-1">Apply in company using Application Id</li>
+            <li class="list-group-item mt-1">Get hired</li>
+          </ul>
+          <div class="card-body ">
+            <a href="#" class="btn btn-warning btn-outline-dark mr-2 ">Sign Up</a>
+            <a href="#" class="btn btn-warning btn-outline-dark ">Log In</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+
+        <div class="card" style="width: 25rem;">
+          <div class="d-flex align-items-center card-header text-white" style="background-color: rgba(37, 54, 97, 1);">
+            <ion-icon name="briefcase-outline" size="large" class="vector"></ion-icon>
+            <h5 class="ml-2 text-center my-auto">
+              For Companies
+            </h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item mt-1">Create your account first</li>
+            <li class="list-group-item mt-1">Create a form for recruitment</li>
+            <li class="list-group-item mt-1">Select and hire applicants</li>
+            <li class="list-group-item mt-1">Select and hire applicants</li>
+          </ul>
+          <div class="card-body ">
+            <a href="#" class="btn btn-warning btn-outline-dark mr-2 ">Sign Up</a>
+            <a href="#" class="btn btn-warning btn-outline-dark ">Log In</a>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="container page3 mt-4 bg-muted border p-4">
+    <div>
+      <h1>Save time and effort in finding</h1>
+      <h2>your job</h2>
+      <br>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor fugit corporis temporibus qui officiis
+        <br> blanditiis laborum minus voluptates labore libero nostrum ut
+      </p>
+
+      <div class="row ">
+        <div class="col border m-2">
+          <div class="row p-4">
+            <div class="imgFind col-sm-2 w-25 m-auto">
+
+              <ion-icon name="expand-outline" class="vector" size="large"></ion-icon>
+            </div>
+            <div class="contentFind col-sm-4 w-75 m-auto">
+              <h3>Get more visibility in finding job</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, enim.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col border m-2">
+          <div class="row p-4">
+            <div class="imgFind col-sm-2 w-25 m-auto">
+              //- <!-- <img src="" alt=""> -->
+              <ion-icon name="medal-outline" class="vector" size="large"></ion-icon>
+            </div>
+            <div class="contentFind col-sm-4 w-75 m-auto">
+              <h3>Finding quality applicant's</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, enim.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-100"></div>
+        <div class="col border m-2">
+          <div class="row p-4">
+            <div class="imgFind col-sm-2 w-25 m-auto">
+              <ion-icon name="search-circle-outline" class="vector" size="large"></ion-icon>
+            </div>
+            <div class="contentFind col-sm-4 w-75 m-auto">
+              <h3>Verify applicant's ability</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, enim.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col border m-2">
+          <div class="row p-4">
+            <div class="imgFind col-sm-2 w-25 m-auto">
+              //- <!-- <img src="" alt=""> -->
+              <ion-icon name="medal-outline" class="vector" size="large"></ion-icon>
+            </div>
+            <div class="contentFind col-sm-4 w-75 m-auto">
+              <h3>Finding quality applicant's</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, enim.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+//- <!-- Modal of signup -->
+<div class="modal fade text-black" id="signUpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="signUpModalLabel">Sign Up Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/signup" method="post">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
+          </div>
+
+
+          <div class="form-group">
+            <label for="exampleInputEmail3">Email <span class="text-danger">*</span></label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="uemail">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password <span class="text-danger">*</span></label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Confirm Password <span class="text-danger">*</span></label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="cpassword">
+          </div>
+
+          <div class="form-group">
+            <label>Role <span class="text-danger">*</span></label>
+            <select class="form-control" name="role">
+              <option value="0" selected>Applicant</option>
+              <option value="1">Company</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-warning">Submit</button>
+        </form>
+      </div>
+  </div>
+  </div>
+</div>
+
+//-   <!-- Modal of login -->
+<div class="modal fade text-black" id="logInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Log In Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/login" method="post">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" name="uemail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+          </div>
+          <div class="form-group">
+            <label>Role</label>
+            <select class="form-control" name="role" >
+              <option value="0">Applicant</option>
+              <option value="1">Company</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-warning">Submit</button>
+        </form>
+      </div>
+      //- <!-- <div class="modal-footer">
+      //-   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      //-   <button type="button" class="btn btn-primary">Save changes</button>
+      //- </div>
+      //- -->
+  </div>
+  </div>
+</div>
+
+  script 
+    include ../public/jquery.js
+  script 
+    include ../public/bootstrap-4.6.2-dist/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js
+  script 
+    include ../public/bootstrap-5.2.1-dist/bootstrap-5.2.1-dist/js/bootstrap.bundle.min.js
+  script 
+    include ../public/bootstrap-4.6.2-dist/bootstrap-4.6.2-dist/js/bootstrap.bundle.js
+  script 
+    include ../public/bootstrap-5.2.1-dist/bootstrap-5.2.1-dist/js/bootstrap.bundle.js
+
+</body>
+
+</html>
