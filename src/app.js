@@ -36,6 +36,11 @@ app.get("/" , (req , res) => {
     res.render("index")
 })
 
+app.get("/employee" , (req , res) => {
+    // res.send("This is start");
+    res.render("Employee")
+})
+
 app.get("/demo" , auth ,async (req , res) => {
     // const cookieDemo = req.cookies.jwt;
     // console.log(`This is cookie demo ${cookieDemo}`);
