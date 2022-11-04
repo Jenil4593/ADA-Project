@@ -1,0 +1,193 @@
+extends base1.pug
+
+block content 
+    <div class="container">
+      <h4 class="text-white mt-2">Online Job Application Form</h4>
+      <div style="width:25%;text-align:left;margin-left:0;border: 1px solid #ffc107;">
+      </div>
+    </div>
+
+    <div class="container sec1 mt-5">
+      <h2 class="text-warning text-center">Personal Info</h2>
+      <div style="width:100%;text-align:left;margin-left:0;border: 1px solid white;background-color: white;" class="mb-5 mt-3">
+      </div>
+      <form class="">
+        <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+          <label for="inputAddress" class="text-white w-25" >Name</label>
+          <input type="text" class="form-control w-50 " id="inputName" placeholder="Enter your name">
+        </div>
+        <div class="form-group d-flex align-items-center my-4">
+          <label for="inputAddress" class="text-white w-25">Address</label>
+          <textarea class="form-control w-50 " id="exampleFormControlTextarea1" rows="2" placeholder="Write Address here..."></textarea>
+        </div>
+
+        <div class="form-group  d-flex align-items-center justify-content-lg-start">
+            <label for="inputEmail4" class="text-white w-25 ">Email</label>
+            <input type="email" class="form-control w-25" id="inputEmail4" placeholder="Enter email e.g., abc@xyz.pqr">
+        </div>
+        <div class="form-group d-flex align-items-center justify-content-lg-start">
+            <label for="inputPassword4" class="text-white w-25">Phone No.</label>
+            <input type="phone" class="form-control w-25" id="inputPassword4" placeholder="Enter your phone no e.g., 1234567890">
+        </div>
+
+        <div class="form-group  d-flex align-items-center justify-content-lg-start">
+            <label for="inputEmail4" class="text-white w-25  ">DOB</label>
+            <input type="date" class="form-control w-25 " id="inputEmail5">
+        </div>
+        <div class="form-group d-flex align-items-center justify-content-lg-start ">
+            <label for="inputPassword4" class="text-white w-25">Gender </label>
+            <div class="form-check form-check-inline ">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0"checked>
+              <label class="form-check-label text-white" for="inlineRadio1">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input border-warning " type="radio" name="inlineRadioOptions" id="inlineRadio2"value="1">
+              <label class="form-check-label text-white" for="inlineRadio2">Female</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input border-warning " type="radio" name="inlineRadioOptions" id="inlineRadio3"value="2">
+              <label class="form-check-label text-white" for="inlineRadio3">Others</label>
+            </div>
+        </div>
+        <div class="form-group mb-3 d-flex align-items-center">
+          <label for="validationDefault03" class="text-white w-25">Nationality</label>
+          <input type="text" class="form-control w-25 " id="validationDefault03" required placeholder="Enter your city">
+        </div>
+
+    
+
+      <h2 class="text-warning text-center mt-5">Educational Info</h2>
+      <div style="width:100%;text-align:left;margin-left:0;border: 1px solid white;background-color: white;" class="mb-5 mt-3">
+      </div>
+      <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+        <label for="inputAddress" class="text-white w-25">Qualifications</label>
+        <input type="text" class="form-control w-50" id="inputName" placeholder="Enter your Qualifications">
+      </div>
+      <div class="form-group d-flex align-items-center justify-content-lg-start my-4">
+        <label for="inputAddress" class="text-white w-25">Job Experience</label>
+        <textarea class="form-control w-50 " id="exampleFormControlTextarea1" rows="2" placeholder="Tell about your Job Experience"></textarea>
+      </div>
+      <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+        <label for="inputAddress" class="text-white w-25">Extra Curricular Activities</label>
+        <input type="text" class="form-control w-50 " id="inputName" placeholder="">
+      </div>
+
+
+      <h2 class="text-warning text-center mt-5">Bio Description</h2>
+      <div style="width:100%;text-align:left;margin-left:0;border: 1px solid white;background-color: white;" class="mb-5 mt-3">
+      </div>
+      <div class="form-group d-flex align-items-center justify-content-lg-start my-4">
+        <label for="inputAddress" class="text-white w-25">Bio-Data</label>
+        <textarea class="form-control w-50 " id="exampleFormControlTextarea1" rows="4" placeholder="Write your bio-data"></textarea>
+      </div>
+      <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+        <label for="inputAddress" class="text-white w-25">Github Link</label>
+        <input type="text" class="form-control w-50 " id="inputName" placeholder="Provide your github link">
+      </div>
+      
+      
+      <h2 class="text-warning text-center mt-5">Upload Document</h2>
+      <div style="width:100%;text-align:left;margin-left:0;border: 1px solid white;background-color: white;" class="mb-5 mt-3">
+      </div>
+      <div class="form-group d-flex align-items-center justify-content-lg-start my-4">
+        <label for="inputAddress" class="text-white w-25">Upload Photo</label>
+        <input type="file" class="form-control w-25 " id="inputName" placeholder="Enter your name">
+      </div>
+      <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+        <label for="inputAddress" class="text-white w-25">Github Link</label>
+        <input type="file" class="form-control w-25 " id="inputName" placeholder="Enter your name">
+      </div>
+
+      <div class="form-group form-check mt-5">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label text-warning" for="exampleCheck1">I hereby declare that all information that I've given above is correct</label>
+      </div>
+
+      <div class="row mt-5 mb-5">
+        <button type="submit" class="btn btn-outline-light w-25 m-auto">Submit</button>
+        <button type="reset" class="btn btn-outline-light w-25 m-auto">Reset</button>
+      </div>
+      </form>
+    </div>
+    </div>
+  
+  
+    <div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="signUpModalLabel">Sign Up Form</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
+              </div>
+
+
+              <div class="form-group">
+                <label for="exampleInputEmail3">Email <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"name="uemail">
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password <span class="text-danger">*</span></label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Confirm Password <span class="text-danger">*</span></label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="cpassword">
+              </div>
+
+              <div class="form-group">
+                <label>Role <span class="text-danger">*</span></label>
+                <select class="form-control" name="role">
+                  <option value="0" selected>Applicant</option>
+                  <option value="1">Company</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-warning">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="logInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginModalLabel">Log In Form</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1"aria-describedby="emailHelp">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+              </div>
+              <div class="form-group">
+                <label>Role</label>
+                <select class="form-control" name="role">
+                  <option value="0">Applicant</option>
+                  <option value="1">Company</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-warning">Submit</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>

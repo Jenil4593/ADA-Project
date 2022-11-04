@@ -2,3 +2,5 @@ node_modules/*
 bootstrap-4.6.2-dist/*
 package.json/*
 package-lock.json/*
+./src/uploads/applicant/*
+./src/uploads/company/*

@@ -1,0 +1,129 @@
+//- <!DOCTYPE html>
+//- <html lang="en">
+
+//- <head>
+//-     <meta charset="UTF-8">
+//-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+//-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//-     <title>Company Home Page</title>
+//-     style 
+//-         include ../public/bootstrap-4.6.2-dist/css/bootstrap.css
+//-     style 
+//-         include ../public/bootstrap-5.2.2-dist/css/bootstrap.css
+//-     style 
+//-         include ../public/style.css
+
+//-     script(src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js")
+//-     script(src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js")
+//- </head>
+
+//- <body>
+//-     <!-- Navigation bar -->
+    
+//-     <div class="page1 p-1 ">
+
+//-         <nav class="navbar navbar-expand-lg navbar-dark bg-transperent px-2">
+//-             <a class="navbar-brand" href="#">
+//-                 <h4><span class="text-warning">i</span> - Job</h4>
+//-             </a>
+//-             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+//-                 <span class="navbar-toggler-icon"></span>
+//-             </button>
+
+//-             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+//-                 <ul class="navbar-nav mr-auto">
+//-                     <li class="nav-item active">
+//-                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+//-                     </li>
+//-                     <li class="nav-item ">
+//-                         <a class="nav-link" id="form-1" href="/Form.html">Company Registration</a>
+//-                     </li>
+//-                     <li class="nav-item ">
+//-                         <a class="nav-link" href="#">Edit Form</a>
+//-                     </li>
+//-                     <li class="nav-item ">
+//-                         <a class="nav-link" href="#">Applicants</a>
+//-                     </li>
+//-                 </ul>
+//-                 <form class="form-inline my-2 my-lg-0">
+
+//-                     <button type="button" class="btn btn-outline-warning my-2 my-sm-0 mr-2" data-toggle="modal"data-target="#logInModal">
+//-                     |    Log Out
+//-                     </button>
+//-                 </form>
+//-             </div>
+//-         </nav>
+
+extends base2.pug
+
+block content 
+
+    <div class="box-1">
+        <div class="row m-4">
+            <div class="text-white col-sm-6 sidebar1 ">
+                <h1 class="text-white mt-4">A Successful business requires one simple thing: <span class="badge badge-warning text-dark">PASSION</span></h1>
+                <p class="mt-4 ">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus earum nam
+                    necessitatibus
+                    corporis mollitia.</p>
+                <div class="row container">
+                    <button class="btn btn-outline-warning w-25">Apply</button>
+                    <button class="btn btn-outline-warning ml-4 w-25">Learn more...</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="container page2 mt-4">
+        <div class="row">
+            <div class="col-sm-6">
+
+                <div class="card" style="width: 35rem; height: 22rem;border-radius: 15px;">
+                    <div class="d-flex align-items-center card-header text-white"style="background-color: rgba(37, 54, 97, 1);">
+                        <ion-icon name="reader-outline"></ion-icon>
+                        <h5 class="ml-2 text-center my-auto">Rules for Companies</h5>
+                    </div>
+                    <div class="card-body recruit">
+                        <p class="card-text  px-1"><a class="" href="#">tcs recruitment for software engineer</a> </p>
+                        <p class="card-text  px-1"><a class="" href="#">infosys recruitment for ASP.NET</a> </p>
+                        <p class="card-text  px-1"><a class="" href="#">tcs recruitment for software engineer</a> </p>
+                        <p class="card-text  px-1"><a class="" href="#">tcs recruitment for software engineer</a> </p>
+                        <p class="card-text  px-1"><a class="" href="#">tcs recruitment for software engineer</a> </p>
+
+                    </div>
+                    <a href="#" class="btn btn-warning btn-outline-dark border border-black display-inline">View All</a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+
+                <div class="card" style="width: 35rem; height: 22rem; border-radius: 15px;">
+                    <div class="d-flex align-items-center card-header text-white"style="background-color: rgba(37, 54, 97, 1);">
+                        <ion-icon name="help-circle-outline" size="large" class="vector"></ion-icon>
+                        <h5 class="ml-2 text-center my-auto">Help</h5>
+                    </div>
+                    <div class="card-body ">
+                        <p class="card-text  px-1"><a class="" href="#">infosys recruitment for ASP.NET</a> </p>
+                    </div>
+                    <a href="#" class="btn btn-warning btn-outline-dark border border-black display-inline">View All</a>
+                </div>
+
+        </div>
+
+    </div>
+
+
+//- </body>
+//-     script 
+//-         include ../public/jquery.js
+//-     script 
+//-         include ../public/index.js
+//-     script 
+//-         include ../public/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js
+//-     script 
+//-         include ../public/bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js
+//-     script 
+//-         include ../public/bootstrap-4.6.2-dist/js/bootstrap.bundle.js
+//-     script 
+//-         include ../public/bootstrap-5.2.2-dist/js/bootstrap.bundle.js
+
+//- </html>

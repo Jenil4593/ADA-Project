@@ -1,0 +1,68 @@
+doctype html
+
+html
+    head 
+        title Applicant Home Page
+        block style 
+            style 
+                include ../public/bootstrap-4.6.2-dist/css/bootstrap.css
+            style 
+                include ../public/bootstrap-5.2.2-dist/css/bootstrap.css
+            style 
+                include ../public/style.css
+
+           
+
+    body  
+        <div class="page1 p-1 ">
+
+            <nav class="navbar navbar-expand-lg navbar-dark bg-transperent px-2">
+                <a class="navbar-brand" href="#">
+                    <h4><span class="text-warning">i</span> - Job</h4>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/applicant">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" id="form-1" href="/applicantform">Apply</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/applicantedit">Edit Application</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">Withdraw Application</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+    
+                        <a href="/logout" class="btn btn-outline-warning my-2 my-sm-0 mr-2" >
+                        |   Log Out
+                        </a>
+                    </form>
+                </div>
+            </nav>
+
+        block content 
+
+        block scripts 
+            script 
+                include ../public/jquery.js
+            script 
+                include ../public/index2.js
+            script 
+                include ../public/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js
+            script 
+                include ../public/bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js
+            script 
+                include ../public/bootstrap-4.6.2-dist/js/bootstrap.bundle.js
+            script 
+                include ../public/bootstrap-5.2.2-dist/js/bootstrap.bundle.js
+            script(src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js")
+            script(src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js") 
+    block foot

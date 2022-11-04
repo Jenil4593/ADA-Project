@@ -9,17 +9,17 @@ $(document).ready(() => {
     const inputBoxDep = document.querySelectorAll(".input-box")[0];
     const inputBoxSkills = document.querySelectorAll(".input-box")[1];
     const inputBoxQuali = document.querySelectorAll(".input-box")[2];
-    const inputBoxQualiApp = document.querySelector(".input-box-app");
+    // const inputBoxQualiApp = document.querySelector(".input-box-app");
     // selecting all add tag
     const addingBtnDep = document.querySelectorAll(".add-tag")[0];
     const addingBtnSkills = document.querySelectorAll(".add-tag")[1];
     const addingBtnQuali = document.querySelectorAll(".add-tag")[2];
-    const addingBtnQualiApp = document.querySelector(".add-tag-app");
+    // const addingBtnQualiApp = document.querySelector(".add-tag-app");
     // selecting all option tag(haven't used yet )
     const optionTagDep = document.querySelector(".option-tag1");
     const optionTagSkills = document.querySelector(".option-tag2");
     const optionTagQuali = document.querySelector(".option-tag3");
-    const optionTagQualiApp = document.querySelector(".option-tag4");
+    // const optionTagQualiApp = document.querySelector(".option-tag4");
     tags = [];
     
     function countTags() {
@@ -84,9 +84,9 @@ countTags();
     addingBtnQuali.addEventListener("click", function () {
         addTag(3);
     });
-    addingBtnQualiApp.addEventListener("click", function () {
-        console.log("Qualiapp called");
-        addTag(4);
-    });
+    // addingBtnQualiApp.addEventListener("click", function () {
+    //     console.log("Qualiapp called");
+    //     addTag(4);
+    // });
 
 })

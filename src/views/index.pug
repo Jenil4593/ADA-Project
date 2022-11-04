@@ -13,7 +13,7 @@
     style 
         include ../public/style.css
 
-    script(src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js")
+    //- script(src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js")
     script(src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js")
     
     <title>Document</title>
@@ -71,10 +71,10 @@
                     <button type="button" class="btn btn-outline-warning my-2 my-sm-0 mr-2" data-toggle="modal" data-target="#logInModal">
                     |    Log In
                     </button>
-                    <h4 class="mr-4 text-white">|</h4>
-                    <a href="/logout" class="btn btn-outline-warning my-2 my-sm-0 mr-2">
-                    |    Logout
-                    </a>
+                    //- <h4 class="mr-4 text-white">|</h4>
+                    //- <a href="/logout" class="btn btn-outline-warning my-2 my-sm-0 mr-2">
+                    //- |    Logout
+                    //- </a>
                 </form>
             </div>
         </nav>
@@ -102,25 +102,24 @@
                     </div>
                     <div class="img col-sm-4 d-flex align-items-center justify-content-center">
                         <h3>LinkedIn</h3>
-                        <img src="./images/Path 2520.svg" class="ml-1" width="35px" alt="">
                     </div>
                     <div class="img col-sm-4">
                         <h3>Google</h3>
                     </div>
                 </div>
             </div>
-            <div class="imgcontainer">
+            //- <div class="imgcontainer">
 
-                <div class="img1">
-                    img(src="../public/images/Group37.png" alt="" width="180px")
-                </div>
-                <div class="img2">
-                    img(src="../public/images/Group36.png" alt="" width="200px")
-                </div>
-                <div class="img3">
-                    img(src='../public/images/Group38.png' alt="" width="200px")
-                </div>
-            </div>
+            //-     <div class="img1">
+            //-         img(src="../public/images/Group37.png" alt="" width="180px")
+            //-     </div>
+            //-     <div class="img2">
+            //-         img(src="../public/images/Group36.png" alt="" width="200px")
+            //-     </div>
+            //-     <div class="img3">
+            //-         img(src='../public/images/Group38.png' alt="" width="200px")
+            //-     </div>
+            //- </div>
         </div>
 
     </div>
@@ -347,7 +346,7 @@
             <form action="/signup" method="post">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Name <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
+                  <input type="text" class="form-control" id="exampleInputName1" aria-describedby="emailHelp" name="name">
                 </div>
 
 
@@ -362,7 +361,7 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Confirm Password <span class="text-danger">*</span></label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" name="cpassword">
+                  <input type="password" class="form-control" id="exampleInputCPassword1" name="cpassword">
                 </div>
 
                 <div class="form-group">
@@ -394,11 +393,11 @@
             <form action="/login" method="post">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" name="uemail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <input type="email" name="uemail" class="form-control" id="exampleInputLoginEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+                  <input type="password" class="form-control" name="password" id="exampleInputLoginPassword1">
                 </div>
                 <div class="form-group">
                     <label>Role</label>
