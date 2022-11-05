@@ -25,7 +25,7 @@ app.set("view engine" , "pug");
 app.set('/views' , path.join(__dirname , '../views'))
 
 // app.use('public' , express.static('static'))
-app.use('/static', express.static(__dirname + "/public"))
+app.use('/public', express.static(__dirname + "/public"))
 
 // make our code JSON user freindly
 app.use(express.json());
@@ -51,25 +51,121 @@ app.get("/demo" , auth ,async (req , res) => {
 // employee section handled
 
 app.get("/applicant" , auth , async (req , res) => {
-    res.render("applicant")
+    const role = req.cookies.role;
+    if(role == 0)
+    {
+        res.render("applicant")
+    }
+
+    else if(role == 1)
+    {
+        res.render("company")
+    }
 })
 
 app.get("/applicantform" , auth , async (req , res) => {
-    res.render("applicantform")
+    const role = req.cookies.role;
+    if(role == 0)
+    {
+        res.render("applicantform")
+    }
+
+    else if(role == 1)
+    {
+        res.render("company")
+    }
 })
 
 app.get("/applicantedit" , auth , (req , res) => {
-    res.render("applicanteditForm")
+    
+    const role = req.cookies.role;
+    if(role == 0)
+    {
+        res.render("applicanteditForm")
+    }
+
+    else if(role == 1)
+    {
+        res.render("company")
+    }
 })
 
 
 // company section handled
 app.get("/company" , auth , (req , res) => {
-    res.render("company");
+    const role = req.cookies.role;
+    if(role == 0)
+    {
+        res.render("applicant")
+    }
+
+    else if(role == 1)
+    {
+        res.render("company")
+    }
 })
 
 app.get("/companyform" , auth , (req , res) => {
-    res.render("companyform");
+    const role = req.cookies.role;
+    if(role == 0)
+    {
+        res.render("applicant")
+    }
+
+    else if(role == 1)
+    {
+        res.render("companyform")
+    }
+})
+
+app.get("/companyedit" , auth , (req , res) => {
+    const role = req.cookies.role;
+    if(role == 0)
+    {
+        res.render("applicant")
+    }
+
+    else if(role == 1)
+    {
+        res.render("companyeditform")
+    }
+})
+
+app.get("/applicantsdashboard" , auth , (req , res) => {
+    const role = req.cookies.role;
+    if(role == 0)
+    {
+        res.render("applicant")
+    }
+
+    else if(role == 1)
+    {
+        res.render("applicantsDashboard")
+    }
+})
+
+app.get("/applicantdetail/:id" , auth ,async (req , res) => {
+    const role = req.cookies.role;
+    console.log(req.params.id);
+    // const applicantDetail = Applicant.findOne({_id : req.params.id});
+    const applicantDetail = async () => {
+        const result = await Applicant.find({_id : req.params.id})
+        return result  
+    }
+
+    // console.log(applicantDetail.name);
+    const record = await applicantDetail()
+    const recordEmp = record[0]
+
+    if(role == 0)
+    {
+        res.render("applicant")
+    }
+
+    else if(role == 1)
+    {
+        res.render("applicantDetails" , recordEmp)
+    }
 })
 
 
@@ -85,6 +181,7 @@ app.post("/signup" , async (req , res)=>{
     try {
         const password = req.body.password;
         const cpassword = req.body.cpassword;
+        const role = req.body.role;
 
         // console.log(`Password is ${password}`)
         // console.log(`Confirm Password is ${cpassword}`)
@@ -112,9 +209,22 @@ app.post("/signup" , async (req , res)=>{
                 // also use secure : true but it only works in https
             })
 
+            res.cookie("role" , myData.role , {
+                expires : new Date(Date.now() + 3600000),
+                httpOnly : true
+            })
             const joined = userJoin.save();
+            
             console.log("User joined successfully " + joined);
-            res.render("applicant");
+            if(userJoin.role === 0)
+            {
+                res.render("applicant");
+            }
+            
+            else if(userJoin.role === 1)
+            {
+                res.render("company");
+            }
 
         }
 
@@ -155,8 +265,21 @@ app.post("/login" , async (req , res) => {
                 httpOnly : true
                 // also use secure : true but it only works in https
             })
+            
+            res.cookie("role" , myData.role , {
+                expires : new Date(Date.now() + 3600000),
+                httpOnly : true
+            })
 
-            res.status(201).render("applicant");
+        }
+        if(myData.role == 0)
+        {
+            res.render("applicant");
+        }
+        
+        else if(myData.role == 1)
+        {
+            res.render("company");
         }
     } catch (error) {
         res.status(400).send("Error part")
@@ -172,6 +295,7 @@ app.get("/logout" , auth , async (req , res) => {
         }))
 
         res.clearCookie("jwt");
+        res.clearCookie("role");
         console.log("Logout successfully");
         await req.user.save();
         res.render("index");
