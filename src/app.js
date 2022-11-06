@@ -65,23 +65,43 @@ app.get("/applicant" , auth , async (req , res) => {
 
 app.get("/applicantform" , auth , async (req , res) => {
     const role = req.cookies.role;
+    const xyz = req.cookies.xyz;
+    // console.log(Applicant.find({userid : xyz}))
+    const applicantDetail = async () => {
+        const result = await Applicant.find({userid : xyz})
+        return result  
+    }
+    const record = await applicantDetail()
+    // console.log(record.length)
     if(role == 0)
     {
-        res.render("applicantform")
+        if(record.length === 0)
+        {
+            return res.render("applicantform")
+        }
+        
+        return res.render("main" , record[0])
     }
 
     else if(role == 1)
     {
-        res.render("company")
+        return res.redirect("/company")
     }
 })
 
-app.get("/applicantedit" , auth , (req , res) => {
-    
+app.get("/applicantedit" , auth , async (req , res) => {
     const role = req.cookies.role;
+    const xyz = req.cookies.xyz;
+
+    const applicantDetail = async () => {
+        const result = await Applicant.find({userid : xyz})
+        return result  
+    }
+    const record = await applicantDetail()    
+
     if(role == 0)
     {
-        res.render("applicanteditForm")
+        res.render("applicanteditForm" , record[0])
     }
 
     else if(role == 1)
@@ -118,8 +138,16 @@ app.get("/companyform" , auth , (req , res) => {
     }
 })
 
-app.get("/companyedit" , auth , (req , res) => {
+app.get("/companyedit" , auth , async (req , res) => {
     const role = req.cookies.role;
+    const xyz = req.cookies.xyz;
+
+    const companyDetail = async () => {
+        const result = await Company.find({userid : xyz})
+        return result  
+    }
+    const record = await companyDetail() 
+
     if(role == 0)
     {
         res.render("applicant")
@@ -127,7 +155,31 @@ app.get("/companyedit" , auth , (req , res) => {
 
     else if(role == 1)
     {
-        res.render("companyeditform")
+        res.render("companyDashboard" , {"companyData" : record})
+    }
+})
+
+app.get("/companyeditdetail/:id" , auth ,async (req , res) => {
+    const role = req.cookies.role;
+    // console.log(req.params.id);
+    // const applicantDetail = Applicant.findOne({_id : req.params.id});
+    const companyDetails = async () => {
+        const result = await Company.find({_id : req.params.id})
+        return result  
+    }
+
+    // console.log(applicantDetail.name);
+    const record = await companyDetails()
+    // console.log(record[0])
+
+    if(role == 0)
+    {
+        res.render("applicant")
+    }
+
+    else if(role == 1)
+    {
+        res.render("companyeditform" , record[0])
     }
 })
 
@@ -171,6 +223,7 @@ app.get("/applicantdetail/:id" , auth ,async (req , res) => {
 
 
 
+
 // login signup and logout handled
 
 
@@ -209,7 +262,13 @@ app.post("/signup" , async (req , res)=>{
                 // also use secure : true but it only works in https
             })
 
-            res.cookie("role" , myData.role , {
+            res.cookie("role" , userJoin.role , {
+                expires : new Date(Date.now() + 3600000),
+                httpOnly : true
+            })
+            
+            
+            res.cookie("xyz" , userJoin._id , {
                 expires : new Date(Date.now() + 3600000),
                 httpOnly : true
             })
@@ -258,8 +317,6 @@ app.post("/login" , async (req , res) => {
             // creating a token or cookie
             const token = await myData.generateAuthToken("login");
 
-            // cookie generate 
-            // store token in cookie
             res.cookie("jwt" , token , {
                 expires : new Date(Date.now() + 3600000),
                 httpOnly : true
@@ -267,6 +324,11 @@ app.post("/login" , async (req , res) => {
             })
             
             res.cookie("role" , myData.role , {
+                expires : new Date(Date.now() + 3600000),
+                httpOnly : true
+            })
+
+            res.cookie("xyz" , myData._id , {
                 expires : new Date(Date.now() + 3600000),
                 httpOnly : true
             })
@@ -289,16 +351,13 @@ app.post("/login" , async (req , res) => {
 // logout handling
 app.get("/logout" , auth , async (req , res) => {
     try {
-        console.log(req.user.tokens);
-        console.log(req.user.tokens.filter((currElem) => {
-            return currElem.token !== req.token
-        }))
 
         res.clearCookie("jwt");
         res.clearCookie("role");
+        res.clearCookie("xyz");
         console.log("Logout successfully");
-        await req.user.save();
-        res.render("index");
+        // await req.user.save();
+        res.redirect("/");
     } catch (error) {
         res.status(500).send("Logout error " + error);
     }
@@ -309,6 +368,7 @@ app.post("/applicantForm" , upload.fields([{name :'image_upload'} , {name : 'res
     try {
 
         const applicantData = new Applicant({
+            userid : req.cookies.xyz,
             name : req.body.appname,
             address : req.body.appadress,
             email : req.body.appemail,
@@ -322,8 +382,10 @@ app.post("/applicantForm" , upload.fields([{name :'image_upload'} , {name : 'res
             biodata : req.body.appbio,
             githuburl : req.body.appgithub,
             uploadphoto : req.files['image_upload'][0].filename,
-            uploadresume : req.files['resume_upload'][0].filename
+            uploadresume : req.files['resume_upload'][0].filename,
         })
+
+
         const applicantRegister = applicantData.save()
         res.render("applicant") 
     } catch (error) {
@@ -336,6 +398,7 @@ app.post("/companyform" , uploadcompany.fields([{name : 'circular_upload'} , {na
     try {
 
         const companyData = new Company({
+            userid : req.cookies.xyz,
             companyname : req.body.compname,
             companytype : req.body.comptype,
             address : req.body.compaddress,

@@ -2,6 +2,10 @@ const mongoose = require ("mongoose");
 const validator = require("validator");
 
 const applicantSchema = new mongoose.Schema({
+    userid :
+    {
+        type : String
+    },
     name : {
         type: String,
         require: true
