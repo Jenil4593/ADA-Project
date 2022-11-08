@@ -7,12 +7,12 @@ const Storage = multer.diskStorage(
 
             if(file.fieldname === 'circular_upload')
             {
-                cb(null , 'C:/Users/Jenil Thakor/OneDrive/Documents/GitHub/ADA-Project/src/uploads/company/circular');
+                cb(null , 'C:/Users/HOME/OneDrive/Documents/GitHub/ADA-Project/src/uploads/company/circular');
             }
             
             else if(file.fieldname === 'verified_upload')
             {
-                cb(null , 'C:/Users/Jenil Thakor/OneDrive/Documents/GitHub/ADA-Project/src/uploads/company/verified');
+                cb(null , 'C:/Users/HOME/OneDrive/Documents/GitHub/ADA-Project/src/uploads/company/verified');
             }
         },
 

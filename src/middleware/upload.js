@@ -7,12 +7,12 @@ const storage = multer.diskStorage(
             if(file.fieldname === 'image_upload')
             {
                 // cb(null , '../uploads/applicant/photo');
-                cb(null , 'C:/Users/Jenil Thakor/OneDrive/Documents/GitHub/ADA-Project/src/uploads/applicant/photo');
+                cb(null , 'C:/Users/HOME/OneDrive/Documents/GitHub/ADA-Project/src/uploads/applicant/photo');
             }
             else if(file.fieldname === 'resume_upload')
             {
                 // cb(null , '../uploads/applicant/resume');
-                cb(null , 'C:/Users/Jenil Thakor/OneDrive/Documents/GitHub/ADA-Project/src/uploads/applicant/resume');
+                cb(null , 'C:/Users/HOME/OneDrive/Documents/GitHub/ADA-Project/src/uploads/applicant/resume');
             }
         } ,
         filename : function(req , file , cb) {
