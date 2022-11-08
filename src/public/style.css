@@ -28,7 +28,7 @@ a:active
 .imgcontainer
 {
     margin: auto;
-    width: 700px;
+    width: 600px;
     height: 400px;
     /* background-color: green; */
     position: relative;
@@ -44,7 +44,7 @@ a:active
 {
     position: absolute;
     top: 120px;
-    right: 120px;
+    right: 80px;
 }
 .img3
 {

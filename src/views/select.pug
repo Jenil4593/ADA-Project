@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    style 
+        include ../public/bootstrap-4.6.2-dist/bootstrap-4.6.2-dist/css/bootstrap.css
+    style 
+        include ../public/bootstrap-5.2.1-dist/bootstrap-5.2.1-dist/css/bootstrap.css
+    style 
+        include ../public/style.css
+
+    script(src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js")
+    script(src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js")
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="formpage1 p-1">
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-transperent px-2">
+            <a class="navbar-brand" href="/">
+            <h4><span class="text-warning">i</span> - Job</h4>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                  |  Registration
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/apply">Apply</a>
+                    <a class="dropdown-item" href="#">Edit</a>
+                    <a class="dropdown-item" href="#">Find</a>
+                  </div>
+                </li>
+
+                <li class="nav-item ">
+                  <a class="nav-link" href="#">Application Form</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="#">Application Withdraw</a>
+                </li>
+              </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <div class="d-flex align-items-center">
+                        <ion-icon name="help-circle-outline" size="large" class="text-white"></ion-icon>
+                        <a class="nav-link text-white ml-2 mr-4" href="#">Help Center</a>
+                    </div>
+                    <h4 class="mr-4 text-white">|</h4>
+                    <button type="button" class="btn btn-outline-warning my-2 mr-4 my-sm-0" data-toggle="modal" data-target="#signUpModal">
+                    |    Sign Up
+                    </button>
+                    <h4 class="mr-4 text-white">|</h4>
+                    <button type="button" class="btn btn-outline-warning my-2 my-sm-0 mr-2" data-toggle="modal" data-target="#logInModal">
+                    |    Log In
+                    </button>
+                    <h4 class="mr-4 text-white">|</h4>
+                    <a href="/logout" class="btn btn-outline-warning my-2 my-sm-0 mr-2">
+                    |    Logout
+                    </a>
+                </form>
+            </div>
+        </nav>
+
+        <div class="container">
+          <h4 class="text-white mt-2">Online Job Application Form</h4>
+          <div style="width:25%;text-align:left;margin-left:0;border: 1px solid #ffc107;">
+          </div>
+        </div>
+
+        <div class="container sec1 mt-5">
+        <h2 class="text-warning text-center">Select Multiple</h2>
+        <div style="width:100%;text-align:left;margin-left:0;border: 1px solid white;background-color: white;" class="mb-5 mt-3">
+        </div>
+        <form class="" action='/select' method='post'>
+
+            <div class="form-group text-white">
+                <label for="exampleFormControlSelect2">Example multiple select</label>
+                <select multiple class="form-control p-4" name="ids" id="exampleFormControlSelect2">
+                    <option class='border'>1</option>
+                    <option class='border'>2</option>
+                    <option class='border'>3</option>
+                    <option class='border'>4</option>
+                    <option class='border'>5</option>
+                </select>
+            </div>  
+            <div class="row mt-5 mb-5">
+              <button type="Submit" class="btn btn-outline-light w-25 m-auto">Submit</button>
+              <button type="reset" class="btn btn-outline-light w-25 m-auto">Reset</button>
+            </div>
+        </form>
+        //- </div>
+    </div>
+  
+  
+//- <!-- Modal of signup -->
+<div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signUpModalLabel">Sign Up Form</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="/signup" method="post">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
+                </div>
+
+
+                <div class="form-group">
+                  <label for="exampleInputEmail3">Email <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="uemail">
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password <span class="text-danger">*</span></label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Confirm Password <span class="text-danger">*</span></label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" name="cpassword">
+                </div>
+
+                <div class="form-group">
+                    <label>Role <span class="text-danger">*</span></label>
+                    <select class="form-control" name="role">
+                        <option value="0" selected>Applicant</option>
+                        <option value="1">Company</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-warning">Submit</button>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+
+//-   <!-- Modal of login -->
+<div class="modal fade" id="logInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Log In Form</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="/login" method="post">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" name="uemail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+                </div>
+                <div class="form-group">
+                    <label>Role</label>
+                    <select class="form-control" name="role" >
+                        <option value="0">Applicant</option>
+                        <option value="1">Company</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-warning">Submit</button>
+            </form>
+        </div>
+
+    </div>
+    </div>
+</div>
+
+    script 
+        include ../public/jquery.js
+    script 
+        include ../public/index.js
+    script 
+        include ../public/bootstrap-4.6.2-dist/bootstrap-4.6.2-dist/js/bootstrap.bundle.min.js
+    script 
+        include ../public/bootstrap-5.2.1-dist/bootstrap-5.2.1-dist/js/bootstrap.bundle.min.js
+    script 
+        include ../public/bootstrap-4.6.2-dist/bootstrap-4.6.2-dist/js/bootstrap.bundle.js
+    script 
+        include ../public/bootstrap-5.2.1-dist/bootstrap-5.2.1-dist/js/bootstrap.bundle.js
+
+</body>
+
+</html>

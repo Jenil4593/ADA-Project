@@ -1,0 +1,146 @@
+extends base2.pug
+
+block content 
+    <div class="container">
+      <h4 class="text-white mt-2">Online Job Application Form</h4>
+      <div style="width:25%;text-align:left;margin-left:0;border: 1px solid #ffc107;">
+      </div>
+    </div>
+
+    <div class="container sec1 mt-5">
+      <h2 class="text-warning text-center">Company Details</h2>
+      <div style="width:100%;text-align:left;margin-left:0;border: 1px solid white;background-color: white;" class="mb-5 mt-3">
+      </div>
+      <form class="" action="/companyform" method="post" enctype="multipart/form-data">
+        <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+          <label for="inputAddress" class="text-white w-25" >Company Name </label>
+          <input type="text" class="form-control w-50 " id="inputName45" placeholder="Enter your name" name="compname" value="#{companyname}">
+        </div>
+
+        if companytype==0
+          <div class="form-group d-flex align-items-center my-4">
+              <label for="exampleFormControlSelect1" class="text-white w-25">Company Type</label>
+              <select class="form-control w-25" id="exampleFormControlSelect15" name="comptype">
+                  <option selected>Government</option>
+                  <option>Private</option>
+              </select>
+          </div>
+
+        else if companytype==1
+          <div class="form-group d-flex align-items-center my-4">
+              <label for="exampleFormControlSelect1" class="text-white w-25">Company Type</label>
+              <select class="form-control w-25" id="exampleFormControlSelect15" name="comptype">
+                  <option >Government</option>
+                  <option selected>Private</option>
+              </select>
+          </div>
+        <div class="form-group d-flex align-items-center my-4">
+          <label for="inputAddress" class="text-white w-25">Address</label>
+          <textarea class="form-control w-50 " id="exampleFormControlTextarea45" rows="2" placeholder="Write Address here..." name="compaddress">#{address}</textarea>
+        </div>
+        <div class="form-group  d-flex align-items-center justify-content-lg-start">
+            <label for="inputEmail4" class="text-white w-25 ">Company Email</label>
+            <input type="email" class="form-control w-25" id="inputEmail45" placeholder="Enter email e.g., abc@xyz.pqr" name="compemail" value="#{companyemail}">
+        </div>
+        <div class="form-group d-flex align-items-center justify-content-lg-start">
+            <label for="inputPassword4" class="text-white w-25">Telephone No.</label>
+            <input type="phone" class="form-control w-25" id="inputPassword45" placeholder="Enter your phone no e.g., 1234567890" name="comptelephone" value="#{telephone}">
+        </div>
+
+        <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+            <label for="inputAddress" class="text-white w-25">Departments</label>
+            <div class="wrapper w-50 p-2">
+                <div class="tag-container w-100 h-100 form-control">
+                  <div class="input-container d-flex align-items-center justify-content-center">
+                    <input type="text" name="" id="" class="input-box h-50">
+                    <button type="button" class="btn btn-warning h-25 add-tag">Add Tag</button>
+                  </div>
+                  <select multiple class="form-control w-100 h-100 option-tag1" name="compdepartment">
+                    each val in departments 
+                      <option value="#{val}" selected>#{val}</option>
+                  </select>
+                </div>
+            </div>
+        </div>            
+
+      <h2 class="text-warning text-center mt-5">Requirements</h2>
+      <div style="width:100%;text-align:left;margin-left:0;border: 1px solid white;background-color: white;" class="mb-5 mt-3">
+      </div>
+      <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+        <label for="inputAddress" class="text-white w-25">Post Available</label>
+        <input type="text" class="form-control w-50" id="inputName" name="comppost" value="#{post}">
+      </div>
+      
+      <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+        <label for="inputAddress" class="text-white w-25">Skill Required</label>
+        <div class="wrapper w-50 p-2">
+            <div class="tag-container w-100 h-100 form-control">
+              <div class="input-container d-flex align-items-center justify-content-center">
+                <input type="text" name="" id="" class="input-box h-50">
+                <button type="button" class="btn btn-warning h-25 add-tag">Add Tag</button>
+              </div>
+              <select multiple class="form-control w-100 h-100 option-tag2" name="compskillreq">
+                each val in skillreq 
+                  <option value="#{val}" selected>#{val}</option>
+              </select>
+            </div>
+        </div>
+      </div>
+    
+      <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+        <label for="inputAddress" class="text-white w-25">Vacancy</label>
+        <input type="text" class="form-control w-50 " id="inputName" placeholder="" name="compvacancy" value="#{vacancy}">
+      </div>
+      <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+        <label for="inputAddress" class="text-white w-25">Experience</label>
+        <input type="text" class="form-control w-50 " id="inputName" placeholder="Year wise Experience" name="compexperience" value="#{experience}">
+      </div>
+
+      <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+        <label for="inputAddress" class="text-white w-25">Qualification  :</label>
+        <div class="wrapper w-50 p-2">
+            <div class="tag-container w-100 h-100 form-control">
+              <div class="input-container d-flex align-items-center justify-content-center">
+                <input type="text" name="" id="" class="input-box h-50">
+                <button type="button" class="btn btn-warning h-25 add-tag">Add Tag</button>
+              </div>
+              <select multiple  class="form-control w-100 h-100 option-tag3" name="compqualireq">
+                each val in qualifications 
+                  <option value="#{val}" selected>#{val}</option>
+              </select>
+            </div>
+        </div>
+    </div>
+
+
+      <h2 class="text-warning text-center mt-5">Upload-Document / Others</h2>
+      <div style="width:100%;text-align:left;margin-left:0;border: 1px solid white;background-color: white;" class="mb-5 mt-3">
+      </div>
+      <div class="form-group d-flex align-items-center justify-content-lg-start my-4">
+        <label for="inputAddress" class="text-white w-25">Circular or Curriculam</label>
+        <input type="file" class="form-control w-25 mr-4" id="inputName" placeholder="Upload your circular" name="circular_upload">
+        <a href ="../public/uploads/company/circular/#{circular}" attributes-list download  class="btn btn-warning w-25 "> Download</a> 
+      </div>
+      <div class="form-group d-flex align-items-center justify-content-lg-start my-4">
+        <label for="inputAddress" class="text-white w-25">Verified Certificate of company</label>
+        <input type="file" class="form-control w-25 mr-4" id="inputName" placeholder="Upload your Certificate" name="verified_upload">
+        <a href ="../public/uploads/company/verified/#{verifiedcertificate}" attributes-list download  class="btn btn-warning w-25 "> Download</a> 
+      </div>
+
+      <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+        <label for="inputAddress" class="text-white w-25">Form Deadline </label>
+        <input type="date" class="form-control w-25 " id="inputName" name="compdeadline" value="#{formdeadline}">
+        </div>
+
+      <div class="form-group form-check mt-5">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+        <label class="form-check-label text-warning" for="exampleCheck1">I hereby declare that all information that I've given above is correct</label>
+      </div>
+
+      <div class="row mt-5 mb-5">
+        <button type="submit" class="btn btn-outline-light w-25 m-auto">Update</button>
+        <button type="reset" class="btn btn-outline-light w-25 m-auto">Reset</button>
+      </div>
+      </form>
+    </div>
+    </div>

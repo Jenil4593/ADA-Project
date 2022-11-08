@@ -54,6 +54,10 @@ const userSChema = new mongoose.Schema(
             type : Number,
             required : true
         },
+        
+        applicationForm : {
+            type : Boolean
+        },
 
         tokens : [{
             token : {

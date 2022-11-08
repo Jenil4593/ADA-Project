@@ -2,15 +2,19 @@ const mongoose = require ("mongoose");
 const validator = require("validator");
 
 const companyschema = new mongoose.Schema({
+
+    userid :
+    {
+        type : String
+    },
+    
     companyname : {
         type: String,
         require: true
     },
 
     companytype : {
-        type: String,
-        enum: ['Public', 'Private'],
-        default: 'Public',
+        type: Number,
         require: true,
     },
 
