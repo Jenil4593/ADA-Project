@@ -1,5 +1,7 @@
 extends base2.pug
-
+block specialStyle
+  style 
+    include ../public/specialstyle.css
 block content
     //- <center> 
     <div class="container">
@@ -8,27 +10,27 @@ block content
       </div>
     </div>
     each company in companyData
-        <div class="container mt-5">
+        <div class="container mt-5 text-black">
             <div class="card mb-3 border-black " style="min-width: 740px; max-height: 300px">
                 <div class="row w-100 h-100" >
                     <div class="col-md-8 ">
                         <div class="card-body">
                             <h5 class="card-title">#{company.companyname}</h5>
                             <h6 class="">Departments : 
-                            each dep in company.departments 
-                                <span class="badge bg-blue mx-2">#{dep}</span>
+                            each department in company.departments 
+                                <span class="badge bg-common mx-2">#{department}</span>
                             </h6>    
 
                             <h6 class="">Post Available :  
-                                <span class="badge bg-blue mx-2">#{company.post}</span>
+                                <span class="badge bg-common mx-2">#{company.post}</span>
                             </h6>    
                             
                             <h6 class="">Vacancy :  
-                                <span class="badge bg-blue mx-2">#{company.vacancy}</span>
+                                <span class="badge bg-common mx-2">#{company.vacancy}</span>
                             </h6>    
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in...</p>
                             <p class="card-text"><small class="text-muted">Form Deadline : #{company.formdeadline} </small></p>
-                            <a href="/companyeditdetail/#{company._id}" class="btn btn-warning my-2 my-sm-0 mr-2" >
+                            <a href="/companyeditdetail/#{company._id}" class="btn bg-common my-2 my-sm-0 mr-2" >
                             |   Update Details
                             </a>
                             <a href="/applicantdetail" class="btn btn-warning my-2 my-sm-0 mr-2" >

@@ -1,0 +1,104 @@
+extends base1.pug
+block specialStyle
+  style 
+    include ../public/specialstyle.css
+block content 
+   <div class="container border border-white my-4 w-75 bg-white rounded-3">
+        <form class="mt-4 px-4" action="/apply" method="post">
+            <h2 class="text-common text-center">Company Details</h2>
+            <div style="width:100%;text-align:left;margin-left:0;border: 1px solid black;background-color: black;"class="mb-5 mt-3">
+            </div>
+            <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+                <label for="inputAddress" class="text-black h5  h5 w-25">Company Name</label>
+                <label class="text-black w-50 bg-light p-2 border-common rounded">#{companyname}</label>
+                <input type="text" hidden name="companyid" value="#{_id}">
+
+            </div>
+
+            if companytype == 0
+                <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+                    <label for="inputAddress" class="text-black h5 h5 w-25">Company Type</label>
+                    <label class="text-black w-50 bg-light p-2 border-common  rounded">Government</label>
+                </div>
+            else    
+                <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+                    <label for="inputAddress" class="text-black h5 w-25">Company Type</label>
+                    <label class="text-black w-50 bg-light p-2 border-common rounded ">Private</label>
+                </div>
+
+            <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+                <label for="inputAddress" class="text-black h5 w-25">Address</label>
+                <label class="text-black w-50 bg-light p-2 border-common rounded ">#{address}</label>
+            </div>
+            <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+                <label for="inputAddress" class="text-black h5 w-25">Company email</label>
+                <label class="text-black w-50 bg-light p-2 border-common rounded ">#{companyemail}</label>
+
+            </div>
+            <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+                <label for="inputAddress" class="text-black h5 w-25">Telephone Number</label>
+                <label class="text-black w-50 bg-light p-2 border-common rounded ">#{telephone}</label>
+            </div>
+            <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+                <label for="inputAddress" class="text-black h5 w-25">Departments</label>
+                div.w-75
+                    each val in departments
+                        <span class="badge badge-pill badge-light mr-2 mt-2 p-2 text-black w-25 bg-light p-2 border-common rounded">#{val}</span>
+
+            </div>
+            <h2 class="text-common text-center mt-5">Requirements</h2>
+            <div style="width:100%;text-align:left;margin-left:0;border: 1px solid black;background-color: black;" class="mb-5 mt-3">
+            </div>
+            <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+                <label for="inputAddress" class="text-black h5 w-25">Post Available</label>
+                <label class="text-black w-50 bg-light p-2 border-common rounded ">#{post}</label>
+
+            </div>
+            <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+                <label for="inputAddress" class="text-black h5 w-25">Skill Required</label>
+                //- each val in skillreq
+                //-     <span class="badge badge-pill badge-light mr-3 p-2 text-black h5">#{val}</span>
+                div.w-75
+                    each val in skillreq
+                        <span class="badge badge-pill badge-light mr-2 mt-2 p-2 text-black w-25 bg-light p-2 border-common rounded">#{val}</span>
+            </div>
+            <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+                <label for="inputAddress" class="text-black h5 w-25">Vacancy</label>
+                <label class="text-black w-25 bg-light p-2 border-common rounded ">#{vacancy}</label>
+            </div>
+            <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+                <label for="inputAddress" class="text-black h5 w-25">Experience</label>
+                <label class="text-black w-25 bg-light p-2 border-common rounded ">#{experience}</label>
+            </div>
+            <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+                <label for="inputAddress" class="text-black h5 w-25">Qualification</label>
+                div.w-75
+                    each val in qualifications
+                        <span class="badge badge-pill badge-light mr-2 mt-2 p-2 text-black w-25 bg-light p-2 border-common rounded">#{val}</span>
+            </div>
+            <h2 class="text-common  text-center mt-5">Document Uploaded</h2>
+            <div style="width:100%;text-align:left;margin-left:0;border: 1px solid black;background-color: black;" class="mb-5 mt-3">
+            </div>
+
+            <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+              <label for="inputAddress" class="text-black h5 w-25">Circular</label>
+              <a href ="../public/uploads/company/circular/#{circular}" attributes-list download  class="btn bg-common w-25 "> Download</a>  
+            </div>
+
+            <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+              <label for="inputAddress" class="text-black h5 w-25">Circular</label>
+              <a href ="../public/uploads/company/verified/#{verifiedcertificate}" attributes-list download  class="btn bg-common w-25 ">Verified</a>  
+            </div>
+
+            <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+                <label for="inputAddress" class="text-black h5 w-25">Form Deadline</label>
+                <label class="text-black w-75 px-3"> #{formdeadline} days left</label>
+            </div>
+
+            <div class="row mt-5 mb-5">
+                <button type="submit" class="btn btn-outline-light w-25 m-auto">Apply</button>
+                <button type="reset" class="btn btn-outline-light w-25 m-auto">Close</button>
+            </div>
+        </form>
+
+        </div>

@@ -8,7 +8,7 @@ const cookieparser = require("cookie-parser");
 const auth = require("./middleware/auth");
 const upload = require("./middleware/upload")
 const uploadcompany = require("./middleware/uploadcompany")
-const bodyParser = require("body-parser");
+const moment = require("moment")
 
 // port number
 const port = process.env.port || 1000;
@@ -17,6 +17,7 @@ const port = process.env.port || 1000;
 const Users = require('./models/users');
 const Applicant = require('./models/applicant')
 const Company = require('./models/company')
+const Apply = require("./models/apply")
 
 // statci files
 
@@ -41,11 +42,61 @@ app.use(bodyParser.json())
 // database connection
 require("./db/conn");
 
+app.get("/companyshow/:id" , async (req , res) => {
+
+    // const role = req.cookies.role;
+    // console.log(req.params.id);
+    // const applicantDetail = Applicant.findOne({_id : req.params.id});
+    const companydetail = async () => {
+        const result = await Company.find({_id : req.params.id})
+        return result  
+    }
+
+    // console.log(applicantDetail.name);
+    const record = await companydetail()
+    const recordComp = record[0]
+    console.log(recordComp)
+    res.render("companydetail" , recordComp);
+})
+
+app.post("/apply" , async (req , res) => {
+
+    const companyId = req.body.companyid;
+    const userId = req.cookies.xyz;
+
+    const applicantDetail = async() => {
+        const result = await Applicant.find({userid : req.cookies.xyz})
+        return result[0]
+    }
+
+    const applicant = await applicantDetail()
+    const applicationId = applicant._id;
+    console.log(applicationId)
+
+    const applyData = new Apply({
+        userid : userId ,
+        applicationid : applicationId,
+        companyid : companyId
+    })
+
+    const applied = applyData.save()
+    res.redirect("/applicant")
+})
+
 // home page of website handle
 
-app.get("/" , (req , res) => {
+app.get("/" , async (req , res) => {
     // res.send("This is start");
-    res.render("index")
+    const companies = async () => {
+        const result = await Company.find()
+        return result  
+    }
+
+    // // console.log(applicantDetail.name);
+    const record = await companies()
+    // const recordEmp = record[0]
+    console.log(record)
+    res.render("index" , {"recordComp" : record})
 })
 
 app.get("/demo" , auth ,async (req , res) => {
@@ -58,9 +109,21 @@ app.get("/demo" , auth ,async (req , res) => {
 
 app.get("/applicant" , auth , async (req , res) => {
     const role = req.cookies.role;
+
+    // const applicantDetail = Applicant.findOne({_id : req.params.id});
+    const companies = async () => {
+        const result = await Company.find()
+        return result  
+    }
+
+    // // console.log(applicantDetail.name);
+    const record = await companies()
+    // const recordEmp = record[0]
+    // console.log(record)
+
     if(role == 0)
     {
-        res.render("applicant")
+        res.render("applicant" , {"recordComp" : record})
     }
 
     else if(role == 1)
@@ -155,6 +218,7 @@ app.get("/companyedit" , auth , async (req , res) => {
         return result  
     }
     const record = await companyDetail() 
+    console.log(record)
 
     if(role == 0)
     {
@@ -163,7 +227,8 @@ app.get("/companyedit" , auth , async (req , res) => {
 
     else if(role == 1)
     {
-        res.render("companyDashboard" , {"companyData" : record})
+        console.log(moment(record.formdeadline).format("MM/DD/YYYY"))
+        res.render("companyDashboard" , {"companyData" : record })
     }
 })
 
@@ -178,7 +243,7 @@ app.get("/companyeditdetail/:id" , auth ,async (req , res) => {
 
     // console.log(applicantDetail.name);
     const record = await companyDetails()
-    // console.log(record[0])
+    const x = record[0].formdeadline.toString().slice(4,15)
 
     if(role == 0)
     {
@@ -187,12 +252,20 @@ app.get("/companyeditdetail/:id" , auth ,async (req , res) => {
 
     else if(role == 1)
     {
-        res.render("companyeditform" , record[0])
+        // console.log(moment(record[0].formdeadline).format("DD/MM/YYYY"))
+        res.render("companyeditform" , {"record" : record[0]   , "date" : x})
     }
 })
 
-app.get("/applicantsdashboard" , auth , (req , res) => {
+app.get("/applicantsdashboard" , auth ,async (req , res) => {
     const role = req.cookies.role;
+    const applicantDetail = async () => {
+        const result = await Applicant.find()
+        return result  
+    }
+    const recordApp = await applicantDetail();
+    console.log(recordApp);
+
     if(role == 0)
     {
         res.render("applicant")
@@ -200,7 +273,7 @@ app.get("/applicantsdashboard" , auth , (req , res) => {
 
     else if(role == 1)
     {
-        res.render("applicantsDashboard")
+        res.render("applicantsDashboard" , {"appData" : recordApp})
     }
 })
 
@@ -227,6 +300,7 @@ app.get("/applicantdetail/:id" , auth ,async (req , res) => {
         res.render("applicantDetails" , recordEmp)
     }
 })
+
 
 
 
@@ -285,12 +359,12 @@ app.post("/signup" , async (req , res)=>{
             console.log("User joined successfully " + joined);
             if(userJoin.role === 0)
             {
-                res.render("applicant");
+                res.redirect("/applicant");
             }
             
             else if(userJoin.role === 1)
             {
-                res.render("company");
+                res.redirect("/company");
             }
 
         }
@@ -344,12 +418,12 @@ app.post("/login" , async (req , res) => {
         }
         if(myData.role == 0)
         {
-            res.render("applicant");
+            res.redirect("/applicant");
         }
         
         else if(myData.role == 1)
         {
-            res.render("company");
+            res.redirect("/company");
         }
     } catch (error) {
         res.status(400).send("Error part")
@@ -395,7 +469,7 @@ app.post("/applicantForm" , upload.fields([{name :'image_upload'} , {name : 'res
 
 
         const applicantRegister = applicantData.save()
-        res.render("applicant") 
+        res.redirect("/applicant") 
     } catch (error) {
         res.status(400).send("Applicant form error : " + error)
     }

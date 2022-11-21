@@ -1,15 +1,18 @@
 extends base1.pug
+block specialStyle
+  style 
+    include ../public/specialstyle.css
 
 block content 
 
     <div class="container sec1 mt-5">
       <div class="jumbotron">
-        <h1 class="display-4">Hello, #{name}</h1>
-        <p class="lead">Hi applicant user you can fill this form already once.You have already filled this form out.</p>
-        <h3>Your application id is : #{_id} </h3>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-warning btn-lg" href="#" role="button">Learn more</a>
+        <h1 class="display-4 text-black">Hello, #{name}</h1>
+        <p class="lead text-black">Hi applicant user you can fill this form already once.You have already filled this form out.</p>
+        <h3 class="text-black">Your application id is : #{_id} </h3>
+        <hr class="my-4 text-black">
+        <p class="text-black">It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <a class="btn bg-outline-common btn-lg" href="#" role="button">Learn more</a>
       </div>
 
     </div>
