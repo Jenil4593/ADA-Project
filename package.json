@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Jenil4593/ADA-Project#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
     "consolidate": "^0.16.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",

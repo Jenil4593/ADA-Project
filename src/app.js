@@ -8,7 +8,7 @@ const cookieparser = require("cookie-parser");
 const auth = require("./middleware/auth");
 const upload = require("./middleware/upload")
 const uploadcompany = require("./middleware/uploadcompany")
-
+const bodyParser = require("body-parser");
 
 // port number
 const port = process.env.port || 1000;
@@ -31,6 +31,12 @@ app.use('/public', express.static(__dirname + "/public"))
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));
 app.use(cookieparser());
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 // database connection
 require("./db/conn");
@@ -92,12 +98,14 @@ app.get("/applicantform" , auth , async (req , res) => {
 app.get("/applicantedit" , auth , async (req , res) => {
     const role = req.cookies.role;
     const xyz = req.cookies.xyz;
-
+    console.log(req.cookies.xyz)
     const applicantDetail = async () => {
         const result = await Applicant.find({userid : xyz})
+        console.log(result)
         return result  
     }
     const record = await applicantDetail()    
+    console.log(record[0])
 
     if(role == 0)
     {
@@ -419,6 +427,38 @@ app.post("/companyform" , uploadcompany.fields([{name : 'circular_upload'} , {na
         console.log(companyData)
 
         res.render("company") 
+    } catch (error) {
+        res.status(400).send("Applicant form error : " + error)
+    }
+})
+
+app.post("/update" , async (req ,res) => {
+    console.log(req.body)
+    try {
+
+        var update = Applicant.findByIdAndUpdate(req.body.aid , 
+        {
+            name : req.body.appname,
+            address : req.body.appadress,
+            email : req.body.appemail,
+            phoneno : req.body.appphone,
+            dob : req.body.appdob,
+            gender : req.body.appgender,
+            nationality : req.body.appnationality,
+            qualifications : req.body.appqualifications,
+            jobexperience : req.body.appjob,
+            skills : req.body.appskills,
+            biodata : req.body.appbio,
+            githuburl : req.body.appgithub
+            // uploadphoto : req.files['image_upload'][0].filename,
+            // uploadresume : req.files['resume_upload'][0].filename,
+        })
+
+        update.exec(function(err , data) {
+            if(err) throw err;
+            res.render("applicant") 
+        })
+        // const applicantRegister = applicantData.save()
     } catch (error) {
         res.status(400).send("Applicant form error : " + error)
     }
