@@ -2,6 +2,15 @@ extends base1.pug
 block specialStyle
   style 
     include ../public/specialstyle.css
+block navbar 
+    div.container.mt-4
+        <div class="form-group w-25 my-4 p-2 m-auto bg-common2 rounded">
+            h2.text-black.text-center #{companyname}
+        </div>
+        h1.text-white.text-center 
+            span.text-white #{companyname}'s #{post} recruitment details 
+            <div class="bg-common2" style="width:100%;margin:auto;border: 1px solid #F3FE39;">
+            </div>
 block content 
    <div class="container border border-white my-4 w-75 bg-white rounded-3">
         <form class="mt-4 px-4" action="/apply" method="post">
@@ -43,7 +52,8 @@ block content
                 <label for="inputAddress" class="text-black h5 w-25">Departments</label>
                 div.w-75
                     each val in departments
-                        <span class="badge badge-pill badge-light mr-2 mt-2 p-2 text-black w-25 bg-light p-2 border-common rounded">#{val}</span>
+                        <label class="text-center text-black w-25 h6 bg-light mr-2 p-2 border-common rounded">#{val}</label>
+                        //- <span class="badge badge-pill badge-light mr-2 mt-2 p-2 text-black w-25 bg-light p-2 border-common rounded">#{val}</span>
 
             </div>
             <h2 class="text-common text-center mt-5">Requirements</h2>
@@ -51,7 +61,7 @@ block content
             </div>
             <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
                 <label for="inputAddress" class="text-black h5 w-25">Post Available</label>
-                <label class="text-black w-50 bg-light p-2 border-common rounded ">#{post}</label>
+                <label class="text-black text-center w-25 bg-light p-2 border-common rounded ">#{post}</label>
 
             </div>
             <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
@@ -60,21 +70,23 @@ block content
                 //-     <span class="badge badge-pill badge-light mr-3 p-2 text-black h5">#{val}</span>
                 div.w-75
                     each val in skillreq
-                        <span class="badge badge-pill badge-light mr-2 mt-2 p-2 text-black w-25 bg-light p-2 border-common rounded">#{val}</span>
+                        <label class="text-black text-center w-25 h6 bg-light mr-2 p-2 border-common rounded">#{val}</label>
+                        //- <span class="badge badge-pill badge-light mr-2 mt-2 p-2 text-black w-25 bg-light p-2 border-common rounded">#{val}</span>
             </div>
             <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
                 <label for="inputAddress" class="text-black h5 w-25">Vacancy</label>
-                <label class="text-black w-25 bg-light p-2 border-common rounded ">#{vacancy}</label>
+                <label class="text-black text-center w-15 h6 bg-light p-2 border-common rounded ">#{vacancy}</label>
             </div>
             <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
                 <label for="inputAddress" class="text-black h5 w-25">Experience</label>
-                <label class="text-black w-25 bg-light p-2 border-common rounded ">#{experience}</label>
+                <label class="text-black text-center w-15 bg-light p-2 border-common rounded ">#{experience}</label>
             </div>
             <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
                 <label for="inputAddress" class="text-black h5 w-25">Qualification</label>
                 div.w-75
                     each val in qualifications
-                        <span class="badge badge-pill badge-light mr-2 mt-2 p-2 text-black w-25 bg-light p-2 border-common rounded">#{val}</span>
+                        <label class="text-black text-center w-25 h6 bg-light mr-2 p-2 border-common rounded">#{val}</label>
+                        //- <span class="badge badge-pill badge-light mr-2 mt-2 p-2 text-black w-25 bg-light p-2 border-common rounded">#{val}</span>
             </div>
             <h2 class="text-common  text-center mt-5">Document Uploaded</h2>
             <div style="width:100%;text-align:left;margin-left:0;border: 1px solid black;background-color: black;" class="mb-5 mt-3">
@@ -82,22 +94,22 @@ block content
 
             <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
               <label for="inputAddress" class="text-black h5 w-25">Circular</label>
-              <a href ="../public/uploads/company/circular/#{circular}" attributes-list download  class="btn bg-common w-25 "> Download</a>  
+              <a href ="../public/uploads/company/circular/#{circular}" attributes-list download  class="btn btn-common w-25 "> Download</a>  
             </div>
 
             <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
-              <label for="inputAddress" class="text-black h5 w-25">Circular</label>
-              <a href ="../public/uploads/company/verified/#{verifiedcertificate}" attributes-list download  class="btn bg-common w-25 ">Verified</a>  
+              <label for="inputAddress" class="text-black h5 w-25">Resume</label>
+              <a href ="../public/uploads/company/verified/#{verifiedcertificate}" attributes-list download  class="btn btn-common w-25 ">Verified</a>  
             </div>
 
             <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
                 <label for="inputAddress" class="text-black h5 w-25">Form Deadline</label>
-                <label class="text-black w-75 px-3"> #{formdeadline} days left</label>
+                <label class="text-black w-75 px-3"> #{date}</label>
             </div>
 
             <div class="row mt-5 mb-5">
-                <button type="submit" class="btn btn-outline-light w-25 m-auto">Apply</button>
-                <button type="reset" class="btn btn-outline-light w-25 m-auto">Close</button>
+                <button type="submit" class="btn btn-outline-dark w-25 m-auto">Apply</button>
+                <button type="reset" class="btn btn-outline-dark w-25 m-auto">Close</button>
             </div>
         </form>
 

@@ -5,8 +5,8 @@ block specialStyle
 block content
     //- <center> 
     <div class="container">
-      <h4 class="text-white mt-2">Company Recruitments</h4>
-      <div style="width:25%;text-align:left;margin-left:0;border: 1px solid #ffc107;">
+      <h4 class="text-white mt-2">Company Recruitment Form Edit</h4>
+      <div style="width:30%;text-align:left;margin-left:0;border: 1px solid #F3FE39;">
       </div>
     </div>
     each company in companyData
@@ -30,11 +30,8 @@ block content
                             </h6>    
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in...</p>
                             <p class="card-text"><small class="text-muted">Form Deadline : #{company.formdeadline} </small></p>
-                            <a href="/companyeditdetail/#{company._id}" class="btn bg-common my-2 my-sm-0 mr-2" >
+                            <a href="/companyeditdetail/#{company._id}" class="btn btn-common my-2 my-sm-0 mr-2" >
                             |   Update Details
-                            </a>
-                            <a href="/applicantdetail" class="btn btn-warning my-2 my-sm-0 mr-2" >
-                            |   Close Forms
                             </a>
                         </div>
                     </div>

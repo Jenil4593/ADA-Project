@@ -6,31 +6,48 @@ block specialStyle
 block content
     //- <center> 
     <div class="container">
-      <h4 class="text-white mt-2">Applied Applicants</h4>
-      <div style="width:25%;text-align:left;margin-left:0;border: 1px solid #ffc107;">
+      <h4 class="text-white mt-2">Applicants</h4>
+      <div style="width:10%;text-align:left;margin-left:0;border: 1px solid #F3FE39;">
       </div>
     </div>
-    
-    each value in appData
+    - var i = 0
+    each value  in appData 
         <div class="container mt-5">
             <div class="card mb-3 border-black " style="min-width: 740px; max-height: 200px">
                 <div class="row w-100 h-100" >
-                    <div class="col-md-2  h-100 ">
-                        <img src="../public/uploads/applicant/photo/#{value.uploadphoto}" alt="..." width="200px" height="199x" class="rounded">
-                    </div>
-                    <div class="col-md-8 text-black">
+                    //- <div class="col-md-2 w-15 mr-5 h-100 ">
+                    //-     img src="../public/uploads/applicant/photo/#{value.uploadphoto}" alt="..." width="200px" height="199x" class="rounded">
+                    //- </div>
+                    <div class="col-md-5 w-50 text-black ml-4 h-100">
                         <div class="card-body">
                             <h5 class="card-title ">#{value.name}</h5>
                             each val in value.skills
-                                <span class="badge bg-common mr-2">#{val}</span>
+                                <span class="badge bg-common mr-2 mt-2">#{val}</span>
                        
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in...</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            <a href="/applicantdetail/#{value._id}" class="btn btn-warning my-2 my-sm-0 mr-2" >
+                            <p class="card-text mt-2">#{value.biodata}</p>
+                            //- <p class="card-text"><small class="text-muted">Last updated #{i} mins ago</small></p>
+                        </div>
+                    </div>
+                    if approved[i]
+                        <div class="col-md-2 d-flex w-25 h-100 align-items-center justify-content-center  rounded-circle ">
+                            <ion-icon class="bg-white border border-3 border-success h-25 w-25 rounded-circle" style="color : green;  width: 124px;" name="checkmark-outline" size="large"></ion-icon>
+                            h4.text-success.ml-2 Approved
+                            <div class="mx-4" style="height:100px;width :4px;background-color:black"></div>
+                            <a href="/applicantdetail/#{value._id}/#{companyId}" class="btn btn-warning ml-2 my-2 my-sm-0 mr-2" >
                             |   View Profile
                             </a>
                         </div>
-                    </div>
+                    else     
+                        <div class="col-md-3 d-flex align-items-center justify-content-center  rounded-circle ">
+                                <ion-icon class="bg-white border border-3 border-danger h-25 w-25 rounded-circle" style="color : red;  width: 124px;" name="close-outline" size="large"></ion-icon>
+                                h4.text-danger.ml-2 Not Approved
+                                <div class="mx-4" style="height:100px;width :4px;background-color:black"></div>
+                                <a href="/applicantdetail/#{value._id}/#{companyId}" class="btn btn-warning ml-2 my-2 my-sm-0 mr-2" >
+                                |   View Profile
+                                </a>
+                        </div>
+                    - i = i+1
+
                 </div>
             </div>
         </div>

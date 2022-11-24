@@ -4,18 +4,72 @@ block specialStyle
     include ../public/specialstyle.css
 
 block content 
-
     <div class="container sec1 mt-5">
-      <div class="jumbotron">
-        <h1 class="display-4 text-black">Hello, #{name}</h1>
+
+      h3.text-white Applicant's Information
+      <div style="width:25%;text-align:left;margin-left:0;border: 1px solid #F3FE39;">
+      </div>
+      <div class="jumbotron mt-5">
+        <h1 class="display-4 text-black">Hello, #{apprecord.name}</h1>
         <p class="lead text-black">Hi applicant user you can fill this form already once.You have already filled this form out.</p>
-        <h3 class="text-black">Your application id is : #{_id} </h3>
+        <h3 class="text-black">Your application id is : #{apprecord._id} </h3>
         <hr class="my-4 text-black">
         <p class="text-black">It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn bg-outline-common btn-lg" href="#" role="button">Learn more</a>
+        <a class="btn bg-outline-common btn-lg" href="/applicantdetail/#{apprecord._id}/0" role="button">Show Your Details</a>
       </div>
-
     </div>
+
+    .container 
+      h3.text-white Companies in which you have applied
+      <div style="width:40%;text-align:left;margin-left:0;border: 1px solid #F3FE39;">
+      //- </div>
+    - var i = 0
+    each value in comprecord
+      <div class="container mt-5 text-black">
+          <div class="card mb-3 border-black " style="min-width: 740px; max-height: 240px">
+              <div class="row w-100 h-100" >
+                  <div class="col-md-5 w-50 text-black ml-4 h-100">
+                      <div class="card-body">
+                          <h5 class="card-title">#{value.companyname}</h5>
+                          <h6 class="">Departments : 
+                          each department in value.departments 
+                              <span class="badge bg-common mx-2 mt-2">#{department}</span>
+                          //- </h6>    
+                          <h6 class="">Post Available :  
+                              <span class="badge bg-common mx-2">#{value.post}</span>
+                          </h6>    
+                          
+                          <h6 class="">Vacancy :  
+                              <span class="badge bg-common mx-2">#{value.vacancy}</span>
+                          </h6>    
+                          <p class="card-text"><small class="text-muted">Form Deadline : #{value.formdeadline} </small></p>
+                          //- <a href="/companyshow/#{value._id}" class="btn bg-common my-2 my-sm-0 mr-2" >
+                          //- |   Update Details
+                          //- </a>
+                      </div>
+                  </div>
+                  if approved[i] 
+                    <div class="col-md-2 d-flex w-25 h-100 align-items-center justify-content-center  rounded-circle ">
+                      <ion-icon class="bg-white border border-3 border-success h-25 w-25 rounded-circle" style="color : green;  width: 124px;" name="checkmark-outline" size="large"></ion-icon>
+                      h4.text-success.ml-2 Approved
+                      <div class="mx-4" style="height:100px;width :4px;background-color:black"></div>
+                        <a href="/companyshow/#{value._id}" class="btn btn-warning ml-2 my-2 my-sm-0 mr-2" >
+                        |   View Profile
+                        </a>
+                      </div>
+                  else     
+                    <div class="col-md-3 d-flex align-items-center justify-content-center  rounded-circle ">
+                      <ion-icon class="bg-white border border-3 border-danger h-25 w-25 rounded-circle" style="color : red;  width: 124px;" name="close-outline" size="large"></ion-icon>
+                      h4.text-danger.ml-2 Not Approved
+                      <div class="mx-4" style="height:100px;width :4px;background-color:black"></div>
+                        <a href="/companyshow/#{value._id}" class="btn btn-warning ml-2 my-2 my-sm-0 mr-2" >
+                        |   View Profile
+                        </a>
+                      </div>
+                  - i = i+1
+              </div>
+          </div>
+      </div>
     </div>
   
   

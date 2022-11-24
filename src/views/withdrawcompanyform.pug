@@ -1,0 +1,30 @@
+extends base2.pug
+block content 
+    <div class="container">
+      <h4 class="text-white mt-2">Online Job Application Form</h4>
+      <div style="width:25%;text-align:left;margin-left:0;border: 1px solid #F3FE39;">
+      </div>
+    </div>
+
+    <div class="container border border-white my-4 w-75 h-100 bg-white rounded-3 sec1 mt-5 p-4">
+      <h2 class="text-common text-center mt-4">Withdraw or Close Company Recruitment Form</h2>
+      <div class="line mb-5 mt-3">
+
+      </div>
+      <form class="" action="/withdrawcompanyform" method="post" >
+        <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+          <label for="inputAddress" class="text-black h5 w-25" >Company Form Id</label>
+          <input type="text" class="form-control w-50 text-black border-common rounded" id="inputName45" placeholder="Enter your company recruitment form id" name="compid">
+        </div>
+      <div class="form-group form-check mt-5">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+        <label class="form-check-label text-black h5" for="exampleCheck1">I hereby declare that I want to close this form now</label>
+      </div>
+
+      <div class="row mt-5 mb-5">
+        <button type="submit" class="btn btn-common w-25 m-auto">Withdraw</button>
+        //- <button type="reset" class="btn btn-outline-dark w-25 m-auto">Reset</button>
+      </div>
+      </form>
+
+    </div> 

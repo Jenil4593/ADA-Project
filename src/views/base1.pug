@@ -17,38 +17,38 @@ html
 
     body  
         <div class="page1  p-1 ">
-
-            <nav class="navbar navbar-expand-lg  bg-transperent px-2">
-                <a class="navbar-brand" href="#">
-                    <h4 class="text-white"><span class="text-common2">i</span> - Job</h4>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-    
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link text-common2" href="/applicant">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link text-common2" id="form-1" href="/applicantform">Apply</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link text-common2" href="/applicantedit">Edit Application</a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link text-common2" href="#">Withdraw Application</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-    
-                        <a href="/logout" class="btn bg-outline-common2 my-2 my-sm-0 mr-2" >
-                        |   Log Out
-                        </a>
-                    </form>
-                </div>
-            </nav>
+            block navbar 
+                <nav class="navbar navbar-expand-lg  bg-transperent px-2">
+                    <a class="navbar-brand" href="#">
+                        <h4 class="text-white"><span class="text-common2">i</span> - Job</h4>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+        
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link text-white" href="/applicant">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link text-white" id="form-1" href="/applicantform">Apply</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link text-white" href="/applicantedit">Edit Application</a>
+                            </li>
+                            //- <li class="nav-item ">
+                            //-     <a class="nav-link text-white" href="/withdrawapplicantform">Cancel Application</a>
+                            //- </li>
+                        </ul>
+                        <form class="form-inline my-2 my-lg-0">
+        
+                            <a href="/logout" class="btn bg-outline-common2 my-2 my-sm-0 mr-2" >
+                            |   Log Out
+                            </a>
+                        </form>
+                    </div>
+                </nav>
 
         block content 
 
@@ -68,3 +68,4 @@ html
             script(src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js")
             script(src = "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js") 
     block foot
+       

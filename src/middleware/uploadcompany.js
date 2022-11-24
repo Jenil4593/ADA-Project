@@ -7,14 +7,12 @@ const Storage = multer.diskStorage(
 
             if(file.fieldname === 'circular_upload')
             {
-                // cb(null , '../public/uploads/company/circular');
-                cb(null , 'D:/JAY/WEB_DEVELOPMENT_CODE_WITH_HARRY/Node.js/OJAS/src/public/uploads/company/circular');                
+                cb(null , 'C://Users//Jenil Thakor//OneDrive//Documents//GitHub//ADA-Project//src//public//uploads//company//circular');                
             }
             
             else if(file.fieldname === 'verified_upload')
             {
-                // cb(null , '../public/uploads/company/verified');
-                cb(null , 'D:/JAY/WEB_DEVELOPMENT_CODE_WITH_HARRY/Node.js/OJAS/src/public/uploads/company/verified');                
+                cb(null , 'C://Users//Jenil Thakor//OneDrive//Documents//GitHub//ADA-Project//src//public//uploads//company//verified');                
             }
         },
 

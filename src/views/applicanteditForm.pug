@@ -6,97 +6,100 @@ block specialStyle
 
 block content 
     <div class="container">
-      <h4 class="text-white mt-2">Online Job Application Form</h4>
-      <div style="width:25%;text-align:left;margin-left:0;border: 1px solid #F3FE39;">
+      <h4 class="text-white mt-2">Online Job Application Form Edit</h4>
+      <div style="width:30%;text-align:left;margin-left:0;border: 1px solid #F3FE39;">
       </div>
     </div>
     
-    <div class="container sec1 mt-5">
-      <h2 class="text-common2  text-center">Personal Info</h2>
-      <div style="width:100%;text-align:left;margin-left:0;border: 1px solid white;background-color: white;" class="mb-5 mt-3">
+    <div class="container border border-white my-4 w-75 bg-white rounded-3 sec1 mt-5 p-4">
+      <h2 class="text-common  text-center">Personal Info</h2>
+      <div  class="line mb-5 mt-3">
       </div>
-      <form class="anyForm">
+      <form class="anyForm" action="/applicantupdate" method="post">
+        <input type="hidden" id="" name="appid" value="#{record._id}">
         <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
-          <label for="inputAddress" class=" w-25" >Name</label>
-          <input type="text" class="form-control w-50 " id="inputName" placeholder="Enter your name" value='#{name}' >
+          <label for="inputAddress" class="text-black h5 w-25" >Name</label>
+          <input name="appname" type="text" class="form-control w-25 text-black border-common rounded " id="inputName" placeholder="Enter your name" value='#{record.name}' >
         </div>
         <div class="form-group d-flex align-items-center my-4">
-          <label for="inputAddress" class=" w-25">Address</label>
-          <textarea class="form-control w-50 " id="exampleFormControlTextarea1" rows="2" placeholder="Write Address here..." >#{address}</textarea>
+          <label for="inputAddress" class=" text-black h5 w-25">Address</label>
+          <textarea name="appadress" class="form-control w-50 text-black border-common rounded " id="exampleFormControlTextarea1" rows="2" placeholder="Write Address here..." >#{record.address}</textarea>
         </div>
 
         <div class="form-group  d-flex align-items-center justify-content-lg-start">
-            <label for="inputEmail4" class=" w-25 ">Email</label>
-            <input type="email" class="form-control w-25" id="inputEmail4" placeholder="Enter email e.g., abc@xyz.pqr" value='#{email}'>
+            <label for="inputEmail4" class=" text-black h5 w-25 ">Email</label>
+            <input name="appemail" type="email" class="form-control w-25 text-black border-common rounded" id="inputEmail4" placeholder="Enter email e.g., abc@xyz.pqr" value='#{record.email}'>
         </div>
         <div class="form-group d-flex align-items-center justify-content-lg-start">
-            <label for="inputPassword4" class=" w-25">Phone No.</label>
-            <input type="phone" class="form-control w-25" id="inputPassword4" placeholder="Enter your phone no e.g., 1234567890" value='#{phoneno}'>
+            <label for="inputPassword4" class=" text-black h5 w-25">Phone No.</label>
+            <input name="appphone" type="phone" class="form-control w-25 text-black border-common rounded" id="inputPassword4" placeholder="Enter your phone no e.g., 1234567890" value='#{record.phoneno}'>
         </div>
 
         <div class="form-group  d-flex align-items-center justify-content-lg-start">
-            <label for="inputEmail4" class=" w-25  ">DOB</label>
-            <input type="date" class="form-control w-25 " id="inputEmail5" value='#{dob}'>
+            <label for="inputEmail4" class=" text-black h5 w-25  ">DOB</label>
+            <label for="inputAddress" class="text-black h5 w-25">#{date} </label>
+            <input name="appdob" type="date" class="form-control w-25 text-black border-common rounded " id="inputEmail5" value='#{date}' required>
         </div>
         <div class="form-group d-flex align-items-center justify-content-lg-start ">
-            <label for="inputPassword4" class="w-25">Gender </label>
-            if gender==0
+            <label for="inputPassword4" class="text-black h5 w-25">Gender </label>
+            if record.gender==0
               <div class="form-check form-check-inline ">
 
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0"checked>
-                <label class="form-check-label  for="inlineRadio1">Male</label>
+                <input class="form-check-input border-3" type="radio" name="appgender" id="inlineRadio1" value="0"checked>
+                <label class="form-check-label text-black h5 w-25" for="inlineRadio1">Male</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input border-common2 " type="radio" name="inlineRadioOptions" id="inlineRadio2"value="1">
-                <label class="form-check-label  for="inlineRadio2">Female</label>
+                <input class="form-check-input border-3 " type="radio" name="appgender" id="inlineRadio2"value="1">
+                <label class="form-check-label text-black h5 w-25" for="inlineRadio2">Female</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input border-common2 " type="radio" name="inlineRadioOptions" id="inlineRadio3"value="2">
-                <label class="form-check-label  for="inlineRadio3">Others</label>
+                <input class="form-check-input border-3 " type="radio" name="appgender" id="inlineRadio3"value="2">
+                <label class="form-check-label text-black h5 w-25" for="inlineRadio3">Others</label>
               </div>
 
-            else if gender==1
+            else if record.gender==1
               <div class="form-check form-check-inline ">
 
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0">
-                <label class="form-check-label  for="inlineRadio1">Male</label>
+                <input class="form-check-input border-3" type="radio" name="appgender" id="inlineRadio1" value="0">
+                <label class="form-check-label text-black h5 w-25"  for="inlineRadio1">Male</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input border-common2 " type="radio" name="inlineRadioOptions" id="inlineRadio2"value="1" checked>
-                <label class="form-check-label  for="inlineRadio2">Female</label>
+                <input class="form-check-input border-3 " type="radio" name="appgender" id="inlineRadio2"value="1" checked>
+                <label class="form-check-label text-black h5 w-25" for="inlineRadio2">Female</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input border-common2 " type="radio" name="inlineRadioOptions" id="inlineRadio3"value="2">
-                <label class="form-check-label  for="inlineRadio3">Others</label>
+                <input class="form-check-input border-3 " type="radio" name="appgender" id="inlineRadio3"value="2">
+                <label class="form-check-label text-black h5 w-25" for="inlineRadio3">Others</label>
               </div>
 
-            else if gender==2
+            else if record.gender==2
               <div class="form-check form-check-inline ">
 
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0">
-                <label class="form-check-label  for="inlineRadio1">Male</label>
+                <input class="form-check-input border-3" type="radio" name="appgender" id="inlineRadio1" value="0">
+                <label class="form-check-label text-black h5 w-25" for="inlineRadio1">Male</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input border-common2 " type="radio" name="inlineRadioOptions" id="inlineRadio2"value="1" >
-                <label class="form-check-label  for="inlineRadio2">Female</label>
+                <input class="form-check-input border-3 " type="radio" name="appgender" id="inlineRadio2"value="1" >
+                <label class="form-check-label text-black h5 w-25" for="inlineRadio2">Female</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input border-common2 " type="radio" name="inlineRadioOptions" id="inlineRadio3"value="2" checked>
-                <label class="form-check-label  for="inlineRadio3">Others</label>
+                <input class="form-check-input border-3 " type="radio" name="appgender" id="inlineRadio3"value="2" checked>
+                <label class="form-check-label text-black h5 w-25" for="inlineRadio3">Others</label>
               </div>
         </div>
         <div class="form-group mb-3 d-flex align-items-center">
-          <label for="validationDefault03" class="w-25">Nationality</label>
-          <input type="text" class="form-control w-25 " id="validationDefault03" required placeholder="Enter your city" value='#{nationality}'>
+          <label for="validationDefault03" class="text-black h5 w-25">Nationality</label>
+          <input name="appnationality" type="text" class="form-control w-25 text-black border-common rounded " id="validationDefault03" required placeholder="Enter your city" value='#{record.nationality}'>
         </div>
 
     
 
-      <h2 class="text-common2 text-center mt-5">Educational Info</h2>
-      <div style="width:100%;text-align:left;margin-left:0;border: 1px solid white;background-color: white;" class="mb-5 mt-3">
+      <h2 class="text-common text-center mt-5">Educational Info</h2>
+      <div  class="line mb-5 mt-3">
+
       </div>
       <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
-        <label for="inputAddress" class="w-25">Qualifications</label>
+        <label for="inputAddress" class="text-black h5 w-25">Qualifications</label>
         <div class="wrapper w-50 p-2">
           <div class="tag-container w-100 h-100 form-control">
             <div class="input-container d-flex align-items-center justify-content-center">
@@ -104,18 +107,18 @@ block content
               <button type="button" class="btn btn-common h-25 add-tag">Add Tag</button>
             </div>
             <select multiple  name="appqualifications" class="form-control w-100 h-100 option-tag1">
-              each val in qualifications 
-                <option value="#{val}" selected> #{val}</option>
+              each value in record.qualifications 
+                <option value="#{value}" selected> #{value}</option>
             </select>
           </div>
         </div>
       </div>
       <div class="form-group d-flex align-items-center justify-content-lg-start my-4">
-        <label for="inputAddress" class="w-25">Job Experience</label>
-        <input type="number" class="form-control w-25 " id="validationDefault03" required placeholder="Enter your job experience in years" name="appjob" value='#{jobexperience}'>
+        <label for="inputAddress" class="text-black h5 w-25">Job Experience</label>
+        <input type="number" class="form-control w-15  text-black border-common rounded" id="validationDefault03" required placeholder="Enter your job experience in years" name="appjob" value='#{record.jobexperience}'>
       </div>
       <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
-        <label for="inputAddress" class="w-25">Skills</label>
+        <label for="inputAddress" class="text-black h5 w-25">Skills</label>
         <div class="wrapper w-50 p-2">
             <div class="tag-container w-100 h-100 form-control">
               <div class="input-container d-flex align-items-center justify-content-center">
@@ -123,7 +126,7 @@ block content
                 <button type="button" class="btn btn-common h-25 add-tag">Add Tag</button>
               </div>
               <select multiple  name="appskills" class="form-control w-100 h-100 option-tag2">
-                each val in skills 
+                each val in record.skills 
                   <option value="#{val}" selected> #{val} </option>
               </select>
             </div>
@@ -131,42 +134,28 @@ block content
       </div>
 
 
-      <h2 class="text-common2 text-center mt-5">Bio Description</h2>
-      <div style="width:100%;text-align:left;margin-left:0;border: 1px solid white;background-color: white;" class="mb-5 mt-3">
-      </div>
-      <div class="form-group d-flex align-items-center justify-content-lg-start my-4">
-        <label for="inputAddress" class="w-25">Bio-Data</label>
-        <textarea class="form-control w-50 " id="exampleFormControlTextarea1" rows="4" placeholder="Write your bio-data" name="appbio" >#{biodata}</textarea>
-      </div>
-      <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
-        <label for="inputAddress" class="w-25">Github Link</label>
-        <input type="text" class="form-control w-50 " id="inputName" placeholder="Provide your github link" name="appgithub" value='#{githuburl}'>
-      </div>
-      
-      
-      <h2 class="text-common2 text-center mt-5">Upload Document</h2>
-      <div style="width:100%;text-align:left;margin-left:0;border: 1px solid white;background-color: white;" class="mb-5 mt-3">
-      </div>
-      <div class="form-group d-flex align-items-center justify-content-lg-start my-4">
-        <label for="inputAddress" class="w-25">Upload Photo</label>
-        <input type="file" class="form-control w-25 mr-4" id="inputName" placeholder="Enter your name" name="image_upload" value='#{uploadphoto}'>
-        <img src="../public/uploads/applicant/photo/#{uploadphoto}"  alt="#{uploadphoto}" width="200px">
-        
-      </div>
-      <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
-        <label for="inputAddress" class="w-25">Resume </label>
-        <input type="file" class="form-control w-25 mr-4" id="inputName" placeholder="Enter your name" name="resume_upload" >
-        <a href ="../public/uploads/applicant/resume/#{uploadresume}" attributes-list download  class="btn bg-common2 w-25 "> Download</a>  
+      <h2 class="text-common text-center mt-5">Bio Description</h2>
+      <div class="bg-common line mb-5 mt-3">
 
-      //- </div>
+      </div>
+      <div class="form-group d-flex align-items-center justify-content-lg-start my-4">
+        <label for="inputAddress" class="text-black h5 w-25">Bio-Data</label>
+        <textarea class="form-control w-50 text-black border-common rounded" id="exampleFormControlTextarea1" rows="4" placeholder="Write your bio-data" name="appbio" >#{record.biodata}</textarea>
+      </div>
+      <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
+        <label for="inputAddress" class="text-black h5 w-25">Github Link</label>
+        <input type="text" class="form-control w-25 text-black border-common rounded " id="inputName" placeholder="Provide your github link" name="appgithub" value='#{record.githuburl}'>
+      </div>
+      
+    
       <div class="form-group form-check mt-5">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label text-common2" for="exampleCheck1">I hereby declare that all information that I've given above is correct</label>
+        <label class="form-check-label text-common" for="exampleCheck1">I hereby declare that all information that I've given above is correct</label>
       </div>
 
       <div class="row mt-5 mb-5">
-        <button type="submit" class="btn btn-outline-light w-25 m-auto">Update</button>
-        <button type="reset" class="btn btn-outline-light w-25 m-auto">Reset</button>
+        <button type="submit" class="btn btn-outline-dark w-25 m-auto">Update</button>
+        <button type="reset" class="btn btn-outline-dark w-25 m-auto">Reset</button>
       </div>
       </form>
     </div>

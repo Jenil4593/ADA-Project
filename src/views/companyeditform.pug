@@ -13,7 +13,8 @@ block content
       <h2 class="text-common text-center mt-4">Company Details</h2>
       <div class="line mb-5 mt-3">
       </div>
-      <form class="" action="/companyform" method="post" enctype="multipart/form-data">
+      <form class="" action="/companyupdate" method="post" >
+        <input type="hidden" id="" name="compid" value="#{record._id}">
         <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
           <label for="inputAddress" class="text-black h5 w-25" >Company Name </label>
           <input type="text" class="form-control w-50 text-black border-common rounded" id="inputName45" placeholder="Enter your name" name="compname" value="#{record.companyname}">
@@ -23,8 +24,8 @@ block content
           <div class="form-group d-flex align-items-center my-4">
               <label for="exampleFormControlSelect1" class="text-black h5 w-25">Company Type</label>
               <select class="form-control w-25 text-black border-common rounded" id="exampleFormControlSelect15" name="comptype">
-                  <option selected>Government</option>
-                  <option>Private</option>
+                  <option selected value="0">Government</option>
+                  <option value="1">Private</option>
               </select>
           </div>
 
@@ -32,8 +33,8 @@ block content
           <div class="form-group d-flex align-items-center my-4">
               <label for="exampleFormControlSelect1" class="text-black h5 w-25">Company Type</label>
               <select class="form-control w-25 text-black border-common rounded" id="exampleFormControlSelect15" name="comptype">
-                  <option >Government</option>
-                  <option selected>Private</option>
+                  <option value="0">Government</option>
+                  <option selected value="1">Private</option>
               </select>
           </div>
         <div class="form-group d-flex align-items-center my-4">
@@ -118,21 +119,11 @@ block content
       <h2 class="text-common text-center mt-5">Upload-Document / Others</h2>
       <div  class="line mb-5 mt-3">
       </div>
-      <div class="form-group d-flex align-items-center justify-content-lg-start my-4">
-        <label for="inputAddress" class="text-black h5 w-25">Circular or Curriculam</label>
-        <input type="file" class="form-control w-25 mr-4 text-black border-common rounded" id="inputName" placeholder="Upload your circular" value="../public/uploads/company/circular/#{record.circular}" name="circular_upload">
-        <a href ="../public/uploads/company/circular/#{record.circular}" attributes-list download  class="btn btn-common w-25 "> Download</a> 
-      </div>
-      <div class="form-group d-flex align-items-center justify-content-lg-start my-4">
-        <label for="inputAddress" class="text-black h5 w-25">Verified Certificate of company</label>
-        <input type="file" class="form-control w-25 mr-4 text-black border-common rounded" id="inputName" placeholder="Upload your Certificate" name="verified_upload">
-        <a href ="../public/uploads/company/verified/#{record.verifiedcertificate}" attributes-list download  class="btn btn-common w-25 "> Download</a> 
-      </div>
 
       <div class="form-group d-flex align-items-center justify-content-lg-start mt-2">
         <label for="inputAddress" class="text-black h5 w-25">Form Deadline </label>
         <label for="inputAddress" class="text-black h5 w-25">#{date} </label>
-        <input type="date" class="form-control w-25 " id="inputName" name="compdeadline" value="">
+        <input type="date" class="form-control w-25 dateInput" id="inputName" name="compdeadline" placeholder=#{date} value="" required>
       </div>
 
       <div class="form-group form-check mt-5">

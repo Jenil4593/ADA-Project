@@ -20,6 +20,18 @@ $(document).ready(() => {
     const optionTagSkills = document.querySelector(".option-tag2");
     const optionTagQuali = document.querySelector(".option-tag3");
     const optionTagQualiApp = document.querySelector(".option-tag4");
+
+
+    // btngrp
+    function role()
+    {
+        const x = document.querySelector("#role")
+        const roles = x.value
+        console.log(roles)
+    }
+
+    const dateIp = document.querySelector(".dateInput");
+    dateIp.value(new Date("2017-03-14"))
     tags = [];
     
     function countTags() {
@@ -88,5 +100,5 @@ countTags();
         console.log("Qualiapp called");
         addTag(4);
     });
-
+    role()
 })

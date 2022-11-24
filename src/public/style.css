@@ -7,6 +7,11 @@
     font-family: 'Rubik', sans-serif;
 }
 
+.w-15
+{
+    width: 15%;
+}
+
 body {
     /* background-color: rgba(228, 219, 219, 0.514); */
 
@@ -26,12 +31,6 @@ body {
     background-color: #226967;
     color: #fff;
 }
-
-.bg-common:hover {
-    border-color: #226967;
-    color: #226967;
-}
-
 
 .btn-common {
     background-color: #226967;
@@ -65,6 +64,11 @@ body {
     color: #F3FE39;
 }
 
+a:hover
+{
+    color: white;
+}
+
 .text-common {
     color: #226967;
 }
@@ -93,6 +97,10 @@ body {
     border: 2px solid #226967;
     color: #226967;
 }
+.bg-outline-common:hover .text-common {
+    border: 2px solid #226967;
+    color: #fff;
+}
 
 .bg-outline-common:hover {
     background-color: #226967;
@@ -106,7 +114,7 @@ body {
 }
 
 .border-common {
-    border: 0px solid #22967161;
+    border: 1px solid #22967161;
     border-right-width: 4px;
     border-bottom-width: 4px;
 }
@@ -123,8 +131,8 @@ body {
 
 .anyForm div label {
     /* font-weight: 700; */
-    font-size: 1.2em;
-    color: #F3FE39;
+    /* font-size: 1.2em;
+    color: #F3FE39; */
 }
 
 
@@ -246,6 +254,11 @@ a:active {
     }
 }
 
+.badge
+{
+    font-size: larger;
+}
+
 .page4 {
     /* background-color: rgba(37, 54, 97, 1); */
     /* background: linear-gradient(89.49deg, #226967 27.46%, rgba(28, 146, 84, 0.7) 74.93%, rgba(45, 188, 59, 0.5) 89.58% ); */
@@ -291,12 +304,9 @@ a:active {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* border: 4px solid #22967161; */
     border: 1px solid #22967161;
     border-right-width: 4px;
     border-bottom-width: 4px;
-    /* border-right-width: 4px; */
-    /* border-bottom-width: 4px; */
     margin-top: 0.15%;
     border-radius: 8px;
 }
@@ -308,6 +318,14 @@ a:active {
     border: 0.5px solid rgba(0, 0, 0, 0.436);
     background-color: rgba(0, 0, 0, 0.436);
     border-radius: 4px;
+}
+
+option:checked
+{
+    background-color: #226967;
+    /* border: 2px solid #94efec72; */
+    /* border-radius: 4px; */
+    color : white;
 }
 
 .tag-container {
@@ -322,13 +340,12 @@ a:active {
 }
 
 .tag-container select option {
-    border: 0px solid #22967161;
+    /* border: 0px solid #22967161; */
     border-right-width: 4px;
     border-bottom-width: 4px;
-    border-radius: 8px;
-    color: white;
-    border-radius: 1px;
-    padding: 4px;
+    /* border-radius: 8px; */
+    border-radius: 4px;
+    padding: 8px;
     margin: 8px;
     font-size: 1.1em;
     list-style: none;
@@ -338,7 +355,7 @@ a:active {
 .tag-container .input-container .input-box {
     border: 2px solid #226967;
     border-radius: 8px;
-    color: white;
+    color: black;
     /* border-radius: 1px; */
     padding: 4px;
     margin: 8px;

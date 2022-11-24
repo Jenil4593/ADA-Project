@@ -9,6 +9,7 @@ const auth = require("./middleware/auth");
 const upload = require("./middleware/upload")
 const uploadcompany = require("./middleware/uploadcompany")
 const moment = require("moment")
+const bodyParser = require("body-parser")
 
 // port number
 const port = process.env.port || 1000;
@@ -18,6 +19,7 @@ const Users = require('./models/users');
 const Applicant = require('./models/applicant')
 const Company = require('./models/company')
 const Apply = require("./models/apply")
+const Select = require("./models/selection")
 
 // statci files
 
@@ -26,7 +28,7 @@ app.set("view engine" , "pug");
 app.set('/views' , path.join(__dirname , '../views'))
 
 // app.use('public' , express.static('static'))
-app.use('/public', express.static(__dirname + "/public"))
+app.use('/public', express.static(path.join( __dirname + "/public")))
 
 // make our code JSON user freindly
 app.use(express.json());
@@ -41,6 +43,18 @@ app.use(bodyParser.json())
 
 // database connection
 require("./db/conn");
+
+// methods 
+
+const  dateCreate = async (x)=> {
+    var date = new Date(x);
+    var dateY = date.getFullYear()
+    var dateM = String(date.getMonth()+1).padStart(2,"0")
+    var dateD = String(date.getDate()).padStart(2 , '0');
+    var datePattern = dateM + '-' + dateD + '-' + dateY;
+    return datePattern;
+}
+
 
 app.get("/companyshow/:id" , async (req , res) => {
 
@@ -99,7 +113,7 @@ app.get("/" , async (req , res) => {
     res.render("index" , {"recordComp" : record})
 })
 
-app.get("/demo" , auth ,async (req , res) => {
+app.get("/demo" ,async (req , res) => {
     // const cookieDemo = req.cookies.jwt;
     // console.log(`This is cookie demo ${cookieDemo}`);
     res.render("demo");
@@ -141,15 +155,56 @@ app.get("/applicantform" , auth , async (req , res) => {
         return result  
     }
     const record = await applicantDetail()
-    // console.log(record.length)
+    
+    // console.log(data2);
+    
+    
     if(role == 0)
     {
-        if(record.length === 0)
+        if(record.length == 0)
         {
             return res.render("applicantform")
         }
-        
-        return res.render("main" , record[0])
+        const applicationId = record[0]._id;
+    
+    const appliedDtl = async () => {
+        const appliedDetail = await Apply.find({applicationid : applicationId});
+        return appliedDetail;
+    }    
+    const companyDetailToShow = await appliedDtl();
+    // console.log(companyDetailToShow);
+    var arr = new Array();
+    var arr1 = new Array();
+
+    
+    const companyData = async () => {
+
+        for (let i = 0; i < companyDetailToShow.length; i++) {
+            const data = await Company.find({_id : companyDetailToShow[i].companyid})
+            arr.push(data[0])
+        }
+        return arr;
+    }
+    const applieddata = async () => {
+
+        for (let i = 0; i < companyDetailToShow.length; i++) {
+            const data = await Select.findOne( { $and: [ { applicationid: companyDetailToShow[i].applicationid }, { companyid: companyDetailToShow[i].companyid} ] } )
+            // console.log(data);
+            if(data === null)
+            {
+                arr1.push(0)
+            }
+            else
+            {
+                arr1.push(data)
+            }
+        }
+        return arr1;
+    }
+    const data2 = await companyData()
+    const data3 = await applieddata()
+    console.log(data3);
+        return res.render("main" , {"apprecord" : record[0] , "comprecord" : data2 , "approved" : data3});
     }
 
     else if(role == 1)
@@ -164,15 +219,16 @@ app.get("/applicantedit" , auth , async (req , res) => {
     console.log(req.cookies.xyz)
     const applicantDetail = async () => {
         const result = await Applicant.find({userid : xyz})
-        console.log(result)
         return result  
     }
     const record = await applicantDetail()    
-    console.log(record[0])
+    const x = await record[0].dob;
+    const datePattern =await dateCreate(x);
+    console.log(datePattern);
 
     if(role == 0)
     {
-        res.render("applicanteditForm" , record[0])
+        res.render("applicanteditForm" , {"record" : record[0] , "date" : datePattern})
     }
 
     else if(role == 1)
@@ -218,7 +274,6 @@ app.get("/companyedit" , auth , async (req , res) => {
         return result  
     }
     const record = await companyDetail() 
-    console.log(record)
 
     if(role == 0)
     {
@@ -227,44 +282,46 @@ app.get("/companyedit" , auth , async (req , res) => {
 
     else if(role == 1)
     {
-        console.log(moment(record.formdeadline).format("MM/DD/YYYY"))
         res.render("companyDashboard" , {"companyData" : record })
     }
 })
 
 app.get("/companyeditdetail/:id" , auth ,async (req , res) => {
     const role = req.cookies.role;
-    // console.log(req.params.id);
-    // const applicantDetail = Applicant.findOne({_id : req.params.id});
     const companyDetails = async () => {
         const result = await Company.find({_id : req.params.id})
         return result  
     }
 
-    // console.log(applicantDetail.name);
     const record = await companyDetails()
-    const x = record[0].formdeadline.toString().slice(4,15)
+    const x = await record[0].formdeadline;
+    console.log(record);
+    const datePattern =await dateCreate(x);
+    console.log(datePattern);
 
     if(role == 0)
     {
-        res.render("applicant")
+        res.redirect("/applicant")
     }
 
     else if(role == 1)
     {
-        // console.log(moment(record[0].formdeadline).format("DD/MM/YYYY"))
-        res.render("companyeditform" , {"record" : record[0]   , "date" : x})
+        res.render("companyeditform" , {"record" : record[0]   , "date" : datePattern})
     }
 })
+
+
 
 app.get("/applicantsdashboard" , auth ,async (req , res) => {
     const role = req.cookies.role;
-    const applicantDetail = async () => {
-        const result = await Applicant.find()
+    const xyz = req.cookies.xyz;
+
+    const companyDetail = async () => {
+        const result = await Company.find({userid : xyz})
         return result  
     }
-    const recordApp = await applicantDetail();
-    console.log(recordApp);
+    const record = await companyDetail() 
+    // console.log(record);
 
     if(role == 0)
     {
@@ -273,14 +330,68 @@ app.get("/applicantsdashboard" , auth ,async (req , res) => {
 
     else if(role == 1)
     {
-        res.render("applicantsDashboard" , {"appData" : recordApp})
+        res.render("companyapplicantdashboard" , {"companyData" : record })
     }
 })
 
-app.get("/applicantdetail/:id" , auth ,async (req , res) => {
+app.get("/applicantsview/:compformid" , auth ,async (req , res) => {
     const role = req.cookies.role;
-    console.log(req.params.id);
+    const compFormId = req.params.compformid;
+
+    const appliedDtl = async () => {
+        const appliedDetail = await Apply.find({companyid : compFormId});
+        return appliedDetail;
+    }    
+    const applicantDetailToShow = await appliedDtl();
+    // console.log(companyDetailToShow);
+    var arr = new Array();
+    var arr1 = new Array();
+
+    
+    const applicantdata = async () => {
+
+        for (let i = 0; i < applicantDetailToShow.length; i++) {
+            const data = await Applicant.find({_id : applicantDetailToShow[i].applicationid})
+            arr.push(data[0])
+        }
+        return arr;
+    }
+    const applieddata = async () => {
+
+        for (let i = 0; i < applicantDetailToShow.length; i++) {
+            const data = await Select.findOne( { $and: [ { applicationid: applicantDetailToShow[i].applicationid }, { companyid: applicantDetailToShow[i].companyid} ] } )
+            // console.log(data);
+            if(data === null)
+            {
+                arr1.push(0)
+            }
+            else
+            {
+                arr1.push(data)
+            }
+        }
+        return arr1;
+    }
+    const data2 = await applicantdata()
+    const data3 = await applieddata()
+    console.log(data3);
+
+    if(role == 0)
+    {
+        res.render("applicant")
+    }
+
+    else if(role == 1)
+    {
+        res.render("applicantsDashboard" , {"appData" : data2 , "companyId" : compFormId , "approved" : data3})
+    }
+})
+
+app.get("/applicantdetail/:id/:companyid" , auth ,async (req , res) => {
+    const role = req.cookies.role;
+    // console.log("Company id : "+ req.params.companyid);
     // const applicantDetail = Applicant.findOne({_id : req.params.id});
+    const compid = req.params.companyid;
     const applicantDetail = async () => {
         const result = await Applicant.find({_id : req.params.id})
         return result  
@@ -289,27 +400,21 @@ app.get("/applicantdetail/:id" , auth ,async (req , res) => {
     // console.log(applicantDetail.name);
     const record = await applicantDetail()
     const recordEmp = record[0]
+    const appdob = await dateCreate(recordEmp.dob)
+    console.log(appdob);
 
     if(role == 0)
     {
-        res.render("applicant")
+        // res.render("applicantDetails" , )
+        res.render("applicantDetails" , {"record" : recordEmp,"date" : appdob , "role" : role , "compid" :0});
     }
 
     else if(role == 1)
     {
-        res.render("applicantDetails" , recordEmp)
+        res.render("applicantDetails" , {"record" : recordEmp,"date" : appdob , "role" : role , "compid" : compid});
     }
 })
 
-
-
-
-
-
-// login signup and logout handled
-
-
-//       (1)  signup handling
 
 app.post("/signup" , async (req , res)=>{
 
@@ -506,11 +611,10 @@ app.post("/companyform" , uploadcompany.fields([{name : 'circular_upload'} , {na
     }
 })
 
-app.post("/update" , async (req ,res) => {
-    console.log(req.body)
+// update applicant form handling
+app.post("/applicantupdate" , (req , res) => {
     try {
-
-        var update = Applicant.findByIdAndUpdate(req.body.aid , 
+        var update = Applicant.findByIdAndUpdate(req.body.appid , 
         {
             name : req.body.appname,
             address : req.body.appadress,
@@ -524,18 +628,140 @@ app.post("/update" , async (req ,res) => {
             skills : req.body.appskills,
             biodata : req.body.appbio,
             githuburl : req.body.appgithub
+        })
+
+        update.exec(function(err , data) {
+            if(err) throw err;
+            res.redirect("/applicant") 
+        })
+
+    } catch (error) {
+        res.status(400).send("Applicant form error : " + error)
+    }
+})
+
+app.post("/companyupdate" , async (req ,res) => {
+    try {
+
+
+        var update = Company.findByIdAndUpdate(req.body.compid , 
+        {
+            companyname : req.body.compname,
+            companytype : req.body.comptype,
+            address : req.body.compaddress,
+            companyemail : req.body.compemail,
+            telephone : req.body.comptelephone,
+            departments : req.body.compdepartment,
+            post : req.body.comppost,
+            skillreq : req.body.compskillreq,
+            vacancy : req.body.compvacancy,
+            experience : req.body.compexperience,
+            qualifications : req.body.qualifications,
+            formdeadline : req.body.compdeadline
             // uploadphoto : req.files['image_upload'][0].filename,
             // uploadresume : req.files['resume_upload'][0].filename,
         })
 
         update.exec(function(err , data) {
             if(err) throw err;
-            res.render("applicant") 
+            res.redirect("/company") 
         })
-        // const applicantRegister = applicantData.save()
     } catch (error) {
         res.status(400).send("Applicant form error : " + error)
     }
+})
+
+app.post("/selection" , async(req , res) => {
+    const appId = req.body.appid;
+    const compId = req.body.compid;
+    // console.log(appId);
+    // console.log(compId);
+
+    const appliedDetl = async () => 
+    {
+        const result = await Apply.findOne( { $and: [ { applicationid: appId }, { companyid: compId} ] } )
+        // console.log(result);
+        return result
+    }
+
+    const record = await appliedDetl();
+    // console.log(record);
+    const userId = record.userid;
+    const appliedId = record._id;
+
+    const select = new Select({
+        appliedid : appliedId , 
+        userid : userId ,
+        applicationid : appId ,
+        companyid : compId , 
+        approved : 1
+    })
+    const selectRegister = select.save()
+    res.redirect("/applicantsdashboard")
+
+})
+
+app.get("/withdrawcompanyform" , auth ,  async (req, res) => {
+    const role = req.cookies.role;
+
+    if(role == 0)
+    {
+        res.render("applicant")
+    }
+
+    else if(role == 1)
+    {
+        res.render("withdrawcompanyform" , {"companyData" : "Hi" })
+    }
+})
+
+app.post("/withdrawcompanyform"  ,  async (req, res) => {
+    const role = req.cookies.role;
+    console.log(req.body.compid);
+    Apply.deletOne(req.body.compid);
+    Select.deleteOne(req.body.compid );
+    Company.deleteOne({ $and : [{_id : req.body.compid} , {userid : req.cookies.xyz} ] } , (err , doc) => {
+        if(!err)
+        {
+            res.redirect("/companyform");
+        }
+        else
+        {
+            res.redirect("/logout")
+        }
+    } );
+    
+})
+app.get("/withdrawapplicantform" , auth ,  async (req, res) => {
+    const role = req.cookies.role;
+
+    if(role == 1)
+    {
+        res.render("company")
+    }
+
+    else if(role == 0)
+    {
+        res.render("withdrawapplicantform" , {"companyData" : "Hi" })
+    }
+})
+
+app.post("/withdrawapplicantform"  ,  async (req, res) => {
+    const role = req.cookies.role;
+    console.log(req.body.appid);
+    Apply.deleteOne( { applicationid : req.body.appid});
+    Select.deleteOne({ applicationid : req.body.appid });
+    Applicant.deleteOne({ $and : [{_id : req.body.appid} , {userid : req.cookies.xyz} ] } , (err , doc) => {
+        if(!err)
+        {
+            res.redirect("/logout");
+        }
+        else
+        {
+            res.redirect("/applicant")
+        }
+    } );
+    
 })
 
 // app listening on port 1000
